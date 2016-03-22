@@ -1513,7 +1513,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffff3c;
+  background: #13e39d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2424,4 +2424,13 @@ body {
   .post-body {
     text-align: justify;
   }
+}
+body {
+  background-image: url("/images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.footer {
+  color: #eee;
 }

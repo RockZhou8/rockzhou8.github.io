@@ -130,7 +130,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">活在当下</p>
+  <p class="site-subtitle">炫蓝的部落格</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -214,6 +214,163 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/22/给-HEXO-博客自定义背景图/" itemprop="url">
+                  给 HEXO 博客自定义背景图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-22T15:29:32+08:00" content="2016-03-22">
+              2016-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/个人笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">个人笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/22/给-HEXO-博客自定义背景图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/22/给-HEXO-博客自定义背景图/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：</p>
+<ul>
+<li><a href="http://iread.io/tags/Hexo/" target="_blank" rel="external">叶阳栩宁的教程</a></li>
+<li><a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">Zipperary 的教程</a></li>
+<li><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">IIssNan 的 NexT 主题</a></li>
+</ul>
+<p>虽然有现成的教程，但是在搭博客的时候还是走了点弯路，碰到些奇奇怪怪的问题，好在有 Google 大法，解决了不少问题。</p>
+<p>博客搭建完之后，只有一篇自动生成的 Hello World，于是我把最近个人翻译的两篇关于 CSS 的文章也发了上来，于是博客便有了点自己的东西了：<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/blog.jpg" alt="我的blog首页"></p>
+<p>NexT 主题有三种样式，都是这种白底黑字很淡雅的，但是我看着白色的背景挺单调的，就想着如何用刚学的 CSS 来给我的博客添加背景图片，略微“美化”一下。</p>
+<p>在 NexT 主题的 github 的 issue 里，我找到了如何自定义一些页面样式的方法，作者 IISSNan 很贴心的在主题的 “\source\css_custom\” 文件夹下放了一个 custom.styl 文件，可以让用户自己在里面写 CSS 代码以个性化自己的博客。<br>于是我找到这个文件，并找到一张去年在三亚拍的大海照片用作背景，开始编写代码了！<br>首先我尝试输入了如下的 CSS 代码，主要是来测试一下这个 custom.styl 是否真的有效：</p>
+<pre><code>body{
+background-image:url(/images/background.jpg);
+}
+</code></pre><p>保存之后，刷新一下本地博客的网页（毕竟还没有 deploy 部署上传），看来我已经成功地给博客加上背景图片了，显然这离美观还差好大一截呢，文章比较长的时候，图片就又重复了一张出来，如图：<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom2.jpg" alt="背景图会重复出现"></p>
+<p>因此，我想做到：</p>
+<ol>
+<li>图片平铺在页面上</li>
+<li>平铺之后不会因为往下滚动图片就会消失</li>
+</ol>
+<p>于是添加定义 background-repeat 和 background-attachment 属性的代码：</p>
+<pre><code>body{
+background-image:url(/images/background.jpg);
+background-repeat: no-repeat;
+background-attachment:fixed;
+}
+</code></pre><p>但是又出现了新的问题，背景图只有左上角的一部分区域平铺到网页之中，其他的都看不到了，我的照片只看得到蓝天，看不到大海了，查看 <a href="http://www.w3school.com.cn/css/css_background.asp" target="_blank" rel="external">W3school</a> 发现使用 <code>background-position:50% 50%;</code> 代码可以解决！</p>
+<blockquote>
+<p>这会导致图像适当放置，其中心与其元素的中心对齐。换句话说，百分数值同时应用于元素和图像。也就是说，图像中描述为 50% 50% 的点（中心点）与元素中描述为 50% 50% 的点（中心点）对齐。</p>
+</blockquote>
+<p>于是再次修改代码：</p>
+<pre><code>body{
+background-image:url(/images/background.jpg);
+background-repeat: no-repeat;
+background-attachment:fixed;
+background-position:50% 50%; 
+}
+</code></pre><p>现在，背景图的设置就基本告一段落了。再浏览一下，当我向下滚动条到最底的时候，发现页脚最下方的版权文字是浅灰色的，在之前 NexT 主题默认的纯白的背景色上没问题，然而在我的背景图上就会不那么明显。<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg"></p>
+<p>于是我选择继续修改 CSS 代码，想个办法给这几个字改一下颜色吧。<br>通过 Chrome 浏览器自带的开发者工具，可以找到页脚所在的文字是在 footer 的类下面，通过右边修改 color 的颜色值可以所见即所得地调整出一个我想要的颜色。然后，我继续在 custom.styl 文件里添加如下的代码：</p>
+<pre><code>footer{
+color:#eee;
+}
+</code></pre><p>刷新之后，再次发现字体颜色已经变成我想要的颜色了。</p>
+<p><a href="http://rockzhou8.github.io/">我的博客</a>已经搭建完毕了，以后我会将学习的笔记和个人心得等放上来，也欢迎各位访问和交流。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -566,7 +723,7 @@ columns: 3 200px;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -574,7 +731,7 @@ columns: 3 200px;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -583,7 +740,7 @@ columns: 3 200px;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
