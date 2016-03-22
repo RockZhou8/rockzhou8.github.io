@@ -57,25 +57,34 @@
 
 
 
-<meta name="description" content="原文：A CSS Multi-column Layout Tutorial for Beginners
+<meta name="description" content="原文：Quick Tip: Fixing the font-weight Problem on Hover States
 
-对有的人来说，阅读一段有很长文字内容的时候可能会出现这样的问题，不是丢字了就是落行了。这个问题很容易通过把内容以多栏进行布局的方式解决。文字的多栏化在出版物中几乎无处不在。利用 CSS 多栏布局模块的功能可以使我们在网站上也能制作出类似的多栏效果。
-有个问题是我们在设计网页时，是很难控制多栏">
+你有没有试过改变链接状态的 font-weight 属性的值？ 如果有，你可能已经注意到文字移位了。在这次的 Quick Tip 中，我们会先了解是什么原因导致的，然后我们来学习两种解决的办法。
+探讨问题首先，让我们通过一个简单的例子来探讨这个问题。如图所示：
+对这些链接，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="译文：CSS多栏布局新手教程">
-<meta property="og:url" content="http://rockzhou8.github.io/2016/03/19/译文：CSS多栏布局新手教程/index.html">
+<meta property="og:title" content="译文：解决hover状态下加粗字体移位问题">
+<meta property="og:url" content="http://rockzhou8.github.io/2016/03/18/译文：解决 hover 状态下加粗字体移位问题/index.html">
 <meta property="og:site_name" content="RockZhou's Blog">
-<meta property="og:description" content="原文：A CSS Multi-column Layout Tutorial for Beginners
+<meta property="og:description" content="原文：Quick Tip: Fixing the font-weight Problem on Hover States
 
-对有的人来说，阅读一段有很长文字内容的时候可能会出现这样的问题，不是丢字了就是落行了。这个问题很容易通过把内容以多栏进行布局的方式解决。文字的多栏化在出版物中几乎无处不在。利用 CSS 多栏布局模块的功能可以使我们在网站上也能制作出类似的多栏效果。
-有个问题是我们在设计网页时，是很难控制多栏">
-<meta property="og:updated_time" content="2016-03-21T13:59:36.000Z">
+你有没有试过改变链接状态的 font-weight 属性的值？ 如果有，你可能已经注意到文字移位了。在这次的 Quick Tip 中，我们会先了解是什么原因导致的，然后我们来学习两种解决的办法。
+探讨问题首先，让我们通过一个简单的例子来探讨这个问题。如图所示：
+对这些链接，">
+<meta property="og:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates01.png">
+<meta property="og:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates02.png">
+<meta property="og:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/test.gif">
+<meta property="og:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/test2.gif">
+<meta property="og:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/test3.gif">
+<meta property="og:updated_time" content="2016-03-18T07:32:49.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="译文：CSS多栏布局新手教程">
-<meta name="twitter:description" content="原文：A CSS Multi-column Layout Tutorial for Beginners
+<meta name="twitter:title" content="译文：解决hover状态下加粗字体移位问题">
+<meta name="twitter:description" content="原文：Quick Tip: Fixing the font-weight Problem on Hover States
 
-对有的人来说，阅读一段有很长文字内容的时候可能会出现这样的问题，不是丢字了就是落行了。这个问题很容易通过把内容以多栏进行布局的方式解决。文字的多栏化在出版物中几乎无处不在。利用 CSS 多栏布局模块的功能可以使我们在网站上也能制作出类似的多栏效果。
-有个问题是我们在设计网页时，是很难控制多栏">
+你有没有试过改变链接状态的 font-weight 属性的值？ 如果有，你可能已经注意到文字移位了。在这次的 Quick Tip 中，我们会先了解是什么原因导致的，然后我们来学习两种解决的办法。
+探讨问题首先，让我们通过一个简单的例子来探讨这个问题。如图所示：
+对这些链接，">
+<meta name="twitter:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates01.png">
 
 
 
@@ -93,7 +102,7 @@
   };
 </script>
 
-  <title> 译文：CSS多栏布局新手教程 | RockZhou's Blog </title>
+  <title> 译文：解决hover状态下加粗字体移位问题 | RockZhou's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +252,7 @@
             
             
               
-                译文：CSS多栏布局新手教程
+                译文：解决hover状态下加粗字体移位问题
               
             
           </h1>
@@ -255,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-19T22:32:57+08:00" content="2016-03-19">
-              2016-03-19
+            <time itemprop="dateCreated" datetime="2016-03-18T12:11:41+08:00" content="2016-03-18">
+              2016-03-18
             </time>
           </span>
 
@@ -285,8 +294,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/19/译文：CSS多栏布局新手教程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/19/译文：CSS多栏布局新手教程/" itemprop="commentsCount"></span>
+                <a href="/2016/03/18/译文：解决 hover 状态下加粗字体移位问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/18/译文：解决 hover 状态下加粗字体移位问题/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,68 +318,24 @@
 
       
         <blockquote>
-<p>原文：<br><a href="http://www.sitepoint.com/css-multi-column-layout-tutorial-for-beginners/" target="_blank" rel="external">A CSS Multi-column Layout Tutorial for Beginners</a></p>
+<p>原文：<br><a href="http://www.sitepoint.com/quick-tip-fixing-font-weight-problem-hover-states/" target="_blank" rel="external">Quick Tip: Fixing the font-weight Problem on Hover States</a></p>
 </blockquote>
-<p>对有的人来说，阅读一段有很长文字内容的时候可能会出现这样的问题，不是丢字了就是落行了。这个问题很容易通过把内容以多栏进行布局的方式解决。文字的多栏化在出版物中几乎无处不在。利用 CSS 多栏布局模块的功能可以使我们在网站上也能制作出类似的多栏效果。</p>
-<p>有个问题是我们在设计网页时，是很难控制多栏大小的。在本次教程中，我会教你如何创建一个精美的且能够自适应各种屏幕尺寸的响应式多栏布局。我们先从最基本的开始，然后再深入到更复杂的概念。</p>
-<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><p>如果你在代码里加上一些前缀的话，浏览器就能够很好地支持多栏布局了。根据 <a href="http://caniuse.com/#feat=multicolumn" target="_blank" rel="external">Can I Use</a> 的全球统计来看，95.32％浏览器都是支持多栏的。像 IE10 及以上，EDGE 和 Opera Mini 等浏览器能够完整支持多栏布局。其他的比如 Firefox 和 Chrome 浏览器需要加前缀代码。</p>
-<p>如果你想兼容老版本浏览器（IE9 及以下）的话，有个 <a href="https://github.com/BetleyWhitehorne/CSS3MultiColumn" title="老的填充工具" target="_blank" rel="external">老的补丁</a> 你可以试试。当然，如果一个浏览器根本不支持多栏效果的话，就会变回单栏布局。因此，使用补丁可能不是最好的选择。</p>
-<p>CSS 多栏布局模块有许多不同的属性。下面我会一一的解释。</p>
-<h2 id="column-count-和-column-width"><a href="#column-count-和-column-width" class="headerlink" title="column-count 和 column-width"></a>column-count 和 column-width</h2><p>column-count 属性可以给一个元素设定一定数量的栏。你可以将其设置为 auto 或是一个整数。如果设置为 auto ，栏数将根据 column-width 属性自动确定。如果设置为一个整数，所有的栏会被设置成相等的宽度。</p>
-<p>column-width 属性可以给一个元素设定一个特定的栏宽。但并非严格如此的，如果没有足够的空间栏会变窄。该属性也可以同时设置一个 auto 或一个整数的值。如果设置为 auto ，宽度将被 column-count 属性确定，所有栏平均分配总宽度。</p>
-<p>还有，这两个值可以同时使用 columns 属性来简写设置。 columns 属性语法是：</p>
-<pre><code>.example { columns: &lt;&apos;column-width&apos;&gt; || &lt;&apos;column-count&apos;&gt; } 
-</code></pre><p>下面是这个属性的几个例子，每个旁边有相应的解释：</p>
-<pre><code>.example {
-columns: 10em;  /* column-width: 10em / column-count: auto */
-columns: 4; /* column-width: auto / column-count: 4 */
-columns: 4 auto;/* column-width: auto / column-count: 4 */
-columns: auto 10em; /* column-count: auto / column-width: 4(译者注：原文错，这里应该是10em) */
-columns: auto;  /* column-count: auto / column-width: auto */
-columns: auto auto; /* column-count: auto / column-width: auto */
-}
-</code></pre><p>你可以看到，第一个 columns 的简写和第四个的定义是一样的，而第二个和第三个也是一样的。也就是说，如果一个整数没有单位的话，就会被解析为 column-count。</p>
-<p><a href="http://codepen.io/SitePoint/pen/WwvMQK" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<p>如果调整一下窗口大小，你会发现：</p>
-<ul>
-<li>column-count 属性始终保持你设置的栏数，只有栏宽会变。</li>
-<li>column-width 属性会根据可用空间自动变化。这种方式调整的栏宽会比规定栏数来的更好。如果没有足够的可用空间，它也可以调整栏宽变的很小。</li>
-<li>columns 属性使用 column-count 值限制最大的栏。这样的方式调节宽度 column-count 不会超出限制并且 column-width 也会更接近设定的宽度。<h2 id="column-gap-和-column-rule"><a href="#column-gap-和-column-rule" class="headerlink" title="column-gap 和 column-rule"></a>column-gap 和 column-rule</h2>column-gap 属性允许我们设定栏和栏之间的间隙。你可以将其设置为 normal 或是一个长度值，可以是零，但不能为负。当你将它设置为 normal，是会根据浏览器的默认值设置间隙。</li>
-</ul>
-<p>column-rule 属性是一个简写，使我们能够添加栏之间的线。这个类似于 border-left 或 border-right 属性。此属性的语法如下：</p>
-<pre><code>.example {
-column-rule: &lt;&apos;column-rule-width&apos;&gt; || &lt;&apos;column-rule-style&apos;&gt; || &lt;&apos;column-rule-color&apos;&gt;
-}
-</code></pre><p>对于 column-rule-width，你可以像指定 3 px 这样一个宽度或使用关键字：thin，medium 或 thick。column-rule-style 可以使用 dashed, dotted,solid 等值，你可以使用 border-style 的有效值定义 column-rule-style，并且 column-rule-color 可以使用任何有效的颜色值。</p>
-<p><a href="http://codepen.io/SitePoint/pen/PNqQxd" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<h2 id="column-fill-和-column-span"><a href="#column-fill-和-column-span" class="headerlink" title="column-fill 和 column-span"></a>column-fill 和 column-span</h2><p>column-fill 属性可以确定文字是如何被分配到各栏当中的。这个属性可以设置为 auto 或 balance。如果设置为 auto，依次填充进每栏。采用 balance 可以确保文字会被所有栏平分。</p>
-<p>有一点要提醒的是，如果你一个栏设置了固定的高度，Firefox 会自动平分文字内容，而其他的浏览器会依次填充进每栏。</p>
-<p>column-span 属性可以控制多个栏如何跨越。它有两个值：all 或 none。当设置为 all 的元素在所有栏跨越。此属性 Firefox 不支持。</p>
-<p><a href="http://codepen.io/SitePoint/pen/yONvry" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<p>在 Firefox 中，blockquote 会位于中间栏的位置，这也是可接受的。</p>
-<h2 id="创建具有响应式的多栏布局"><a href="#创建具有响应式的多栏布局" class="headerlink" title="创建具有响应式的多栏布局"></a>创建具有响应式的多栏布局</h2><p>现在，你已经迅速掌握了以上这几种新属性和它们的值，我们再来专注来做好响应式布局以促进用户体验。</p>
-<p>column-count 和 column-width 都有一些的问题。当在大屏设备中 column-count 保持在相应的栏数，但是在小屏设备上布局在会被打破。同样，如果 column-width 在小屏设备上栏虽然不会太窄，但在大屏设备上导致会有大量的栏出现。</p>
-<p>为了确保您的布局在大小屏幕上都能较好的适应，你应该同时指定 column-count 和 column-width 参数。这样你就能控制好栏的宽度和数量。还有一些小问题，我们下一步继续来解决。</p>
-<h1 id="固定水平滚动"><a href="#固定水平滚动" class="headerlink" title="固定水平滚动"></a>固定水平滚动</h1><p>如果您指定一个固定高度的栏，如果使得窗口较窄则会出现一个水平滚动条。由于内容不能垂直展开，就会水平地增长。为了解决这个问题，你可以调整你的浏览器的宽度时，水平滚动条首先出现。然后，使用媒介查询属性在对该栏的高度设置一个 auto 的属性值。下面是代码：</p>
-<pre><code>.responsive-height {
-height: 250px;
-}
-@media (max-width: 1040px) {
-.responsive-height {
-height: auto;
-}
-} 
-</code></pre><p><a href="http://codepen.io/SitePoint/pen/vGOdwj" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<p>调整窗口的大小，看看这两个例子是怎么响应的。</p>
-<h1 id="固定很长的栏"><a href="#固定很长的栏" class="headerlink" title="固定很长的栏"></a>固定很长的栏</h1><p>如果你的栏太长，用户需要向上和向下滚动才能阅​​读所有内容，这太麻烦了。当栏的高度比窗口高度还大，不用多栏是一个好方法。这可以再次使用媒介查询属性来解决：</p>
-<pre><code>@media (min-width: 800px) {
-.long-columns {
-columns: 3 200px;
-}
-}
-</code></pre><p>在只有宽度足够的情况下，才会有多栏，用户再也不用上下滚动。</p>
-<p><a href="http://codepen.io/SitePoint/pen/reVJEL" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>我希望这篇 CSS 中多栏布局模块的介绍能让你熟悉这个功能。这个属性可以提高你的响应式设计能力，如果你仍然想要兼容旧的浏览器，多栏还是会变成单个栏的。</p>
+<p>你有没有试过改变链接状态的 font-weight 属性的值？ 如果有，你可能已经注意到文字移位了。<br>在这次的 Quick Tip 中，我们会先了解是什么原因导致的，然后我们来学习两种解决的办法。</p>
+<h2 id="探讨问题"><a href="#探讨问题" class="headerlink" title="探讨问题"></a>探讨问题</h2><p>首先，让我们通过一个简单的例子来探讨这个问题。<br>如图所示：<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates01.png" alt="链接状态-鼠标未悬停上"></p>
+<p>对这些链接，你在CSS里可能是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a:hover &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为我们通常不会为这些链接设置一个固定的宽度，当用户把鼠标悬停在链接上时文字移位了。 这是因为这时候链接上的字母变粗了。我们来试试看给第一个链接定义一个 active 类，并添加如下CSS代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.active &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后，我们把第二个链接的文字改成和第一个链接上的文字一样，都是”First Item”：<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates02.png" alt="链接状态-鼠标悬停上"></p>
+<p>打开浏览器，我们会发现那两个 “First Item” 链接的宽度是不同的。</p>
+<p>你可以看看我们在 CodePen 上的 DEMO 演示：<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/test.gif" alt="测试链接状态悬停的GIF动画"></p>
+<p>显然，这种粗体效果既不常见也不美观。因此，我们有两种解决方法来改善它。</p>
+<h2 id="方法1：给所有项目设置宽度"><a href="#方法1：给所有项目设置宽度" class="headerlink" title="方法1：给所有项目设置宽度"></a>方法1：给所有项目设置宽度</h2><p>正如前面提到的，最常见的做法是给这些列表项设置一个宽度。在这个例子里，我们把每个列表项的宽度设置为24%。</p>
+<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">li &#123;</span><br><span class="line">  list-style-type: none;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 24%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/test2.gif" alt="方法1的GIF动画"><br>尽管这是一个可行的方法，然而并不理想，因为有些时候我们是要避免给元素增加固定的宽度值。所以下面会有个更好的解决方法。</p>
+<h2 id="方法2：文字阴影"><a href="#方法2：文字阴影" class="headerlink" title="方法2：文字阴影"></a>方法2：文字阴影</h2><p>通过利用 text-shadow 属性的优势，我们可以模拟 font-weight 的特性，并根据需要，改变 blur-radius 的值来调整文字阴影。</p>
+<p>根据在上述例子中使用的字体，我们可以结合 text-shadow 的属性和 letter-spacing 属性来创造出不错的文字效果。</p>
+<p>因此，我们来给这些链接添加这样的CSS代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">  letter-spacing: .1em;  transition: text-shadow .3s;</span><br><span class="line">&#125;</span><br><span class="line">a:hover &#123;</span><br><span class="line">  text-shadow: 0 0 .65px #333, 0 0 .65px #333;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试一下吧！<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/test3.gif" alt="方法2的GIF动画"><br>看，我们不需要给任何元素添加固定的宽度值就成功地避免了链接移动问题。并且文字大小也没变，这明显比使用 font-weight 属性的方法更好，更简洁美观。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>如果我们再碰到这样的问题，上述两种解决方法中的任何一个都是可行的。如果你知道的别的高招，请留言给我。</p>
 
       
     </div>
@@ -394,13 +359,13 @@ columns: 3 200px;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/18/译文：解决hover状态下加粗字体移位问题/" rel="next" title="译文：解决hover状态下加粗字体移位问题">
-                <i class="fa fa-chevron-left"></i> 译文：解决hover状态下加粗字体移位问题
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/19/译文：CSS 多栏布局新手教程/" rel="prev" title="译文：CSS多栏布局新手教程">
+                译文：CSS多栏布局新手教程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -426,8 +391,8 @@ columns: 3 200px;
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/19/译文：CSS多栏布局新手教程/"
-           data-title="译文：CSS多栏布局新手教程" data-url="http://rockzhou8.github.io/2016/03/19/译文：CSS多栏布局新手教程/">
+      <div class="ds-thread" data-thread-key="2016/03/18/译文：解决 hover 状态下加粗字体移位问题/"
+           data-title="译文：解决hover状态下加粗字体移位问题" data-url="http://rockzhou8.github.io/2016/03/18/译文：解决 hover 状态下加粗字体移位问题/">
       </div>
     
   </div>
@@ -549,7 +514,7 @@ columns: 3 200px;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器支持"><span class="nav-number">1.</span> <span class="nav-text">浏览器支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#column-count-和-column-width"><span class="nav-number">2.</span> <span class="nav-text">column-count 和 column-width</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#column-gap-和-column-rule"><span class="nav-number">3.</span> <span class="nav-text">column-gap 和 column-rule</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#column-fill-和-column-span"><span class="nav-number">4.</span> <span class="nav-text">column-fill 和 column-span</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建具有响应式的多栏布局"><span class="nav-number">5.</span> <span class="nav-text">创建具有响应式的多栏布局</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#固定水平滚动"><span class="nav-number"></span> <span class="nav-text">固定水平滚动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#固定很长的栏"><span class="nav-number"></span> <span class="nav-text">固定很长的栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#探讨问题"><span class="nav-number">1.</span> <span class="nav-text">探讨问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1：给所有项目设置宽度"><span class="nav-number">2.</span> <span class="nav-text">方法1：给所有项目设置宽度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2：文字阴影"><span class="nav-number">3.</span> <span class="nav-text">方法2：文字阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
