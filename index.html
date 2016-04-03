@@ -236,6 +236,188 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/03/译文：简洁明了的响应式表格/" itemprop="url">
+                  译文：简洁明了的响应式表格
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-03T16:03:11+08:00" content="2016-04-03">
+              2016-04-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/个人译文/" itemprop="url" rel="index">
+                    <span itemprop="name">个人译文</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/03/译文：简洁明了的响应式表格/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/03/译文：简洁明了的响应式表格/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>原文：<br><a href="https://css-tricks.com/accessible-simple-responsive-tables/" target="_blank" rel="external">Accessible, Simple, Responsive Tables</a></p>
+</blockquote>
+<p><strong>你必须承认，没有一种单一地能使表格响应式表现的方法，然后我们再来想办法来解决</strong>。<a href="http://www.davidelrizzo.com/" title="Davide Rizzo" target="_blank" rel="external">Davide Rizzo</a> 说过的这个我很赞同，并且这一伟大的领域我们<a href="https://css-tricks.com/tag/responsive-tables/" title="已经实践" target="_blank" rel="external">已经实践</a>了一段时间。</p>
+<h1 id="内容和比较表"><a href="#内容和比较表" class="headerlink" title="内容和比较表"></a>内容和比较表</h1><p>在一些有各种类型表格的网页上，内容会任意的疯狂地响应式的变化。我觉得最棘手的是对照表和普通内容布局表，而且也没有通用的基于 CSS 的解决方案。</p>
+<p>我寻求一个灵活和简单的解决方案，一个可复用的 Web 组件，并且可以不管其中的内容。</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/ComparisonTables.jpg" alt="对照表的例子"><br>对照表的例子</p>
+<h1 id="表标记还能为我所用吗？"><a href="#表标记还能为我所用吗？" class="headerlink" title="表标记还能为我所用吗？"></a>表标记还能为我所用吗？</h1><p>标准表的标记似乎很有语义感，并且对其单元格也很有用。我主要关注的是通俗易懂。本地表标记能够使用户通过屏幕阅读器获取内容并定位吗？</p>
+<p>我用一个<a href="http://codepen.io/davidelrizzo/full/dGBpZK/" title="简单的表格" target="_blank" rel="external">简单的表格</a>做了一些测试。通过一些屏幕阅读器（<a href="http://www.chromevox.com/" title="Chrome Vox" target="_blank" rel="external">Chrome Vox</a> 和 <a href="https://www.apple.com/voiceover/info/guide/" title="VoiceOver" target="_blank" rel="external">VoiceOver</a>），我试图定位标记：</p>
+<ul>
+<li>ChromeVox 会告诉你有个表格，VoiceOver 还会告诉你有多少行和列（这更有用）。</li>
+<li>ChromeVox 或 VoiceOver都会告诉你表的标题。<thead>，<th> 甚至 scope=”row|col” 似乎并没有什么用。只有一种识别他们的方法就是把它包进 <h#> 标记中。</h#></th></thead></li>
+<li>阅读器逐行遍历表格，也并不会管表的内容如何。VoiceOver 至少可以使用方向键在表内定位，但仍然没办法指明以何种顺序定位。</li>
+<li>其实，没有哪种标记会告诉屏幕阅读器的用户，是应该通过行还是列阅读。有意义的标记仍然来自非表格语义内容。</li>
+</ul>
+<h1 id="响应表的方法"><a href="#响应表的方法" class="headerlink" title="响应表的方法"></a>响应表的方法</h1><p>让我们来想一个不同的响应式的表方法：</p>
+<ol>
+<li>压扁：如果列没有内容可以水平压扁，在手机屏幕上通常是没问题的，而且也没有改变布局，这是一个可行的方法。</li>
+<li>水平滚动：如果布局和内容是准确的和关键的，用户可以向左向右滚动。这个可以用 CSS 的 overflow=”auto” 包装。</li>
+<li>按行折叠：在小屏幕上把每行分割到一个小的单列表格中。把 display:table 换成 display:block 可以用普通表标记实现。</li>
+<li>按列折叠：这可是个棘手的事情，因为代码的顺序是按行和用 <tr> 标签包裹的，所以不能用纯 CSS 普通表标记完成。我们不得不要么改标记要么使用JavaScript实现。</tr></li>
+</ol>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/types-of-responsive-tables.gif" alt="这四种表格的视觉化例子"><br>这四种表格的视觉化例子</p>
+<h1 id="不推荐建立响应式表的方式"><a href="#不推荐建立响应式表的方式" class="headerlink" title="不推荐建立响应式表的方式"></a>不推荐建立响应式表的方式</h1><p>经过反复实验，我放弃了下面这些方法：</p>
+<ol>
+<li><p>建立另一个窄的表格，通过 JavaScript 断点来隐藏、显示交替实现。<br><strong>为什么不呢？</strong>内容重复，也不比一个 “.m” 站点好，还会打散表内的特殊 ID。风格指南驱动组件不是一个好主意。</p>
+</li>
+<li><p>使用普通表标记和在 JavaScript 断点的处把表重新安排进一个响应式的里面。<br><strong>为什么不呢？</strong>需要对垂直和水平的表进行不同的标记。这会打破表内容的 JS 初始化，还需要大量的 JS 事件侦听器和 DOM 操作。</p>
+</li>
+<li><p>保持表格标记，但是切换到 display:flex 以垂直对其表内容。<br><strong>为什么不呢？</strong>不可能通过 <tr> 标签跨行对其单元格，并且 display: table-cell 会覆盖 flex-item。</tr></p>
+</li>
+</ol>
+<h1 id="flexbox-的响应表"><a href="#flexbox-的响应表" class="headerlink" title="flexbox 的响应表"></a>flexbox 的响应表</h1><h2 id="1a-面向行型的表…"><a href="#1a-面向行型的表…" class="headerlink" title="1a) 面向行型的表…"></a>1a) 面向行型的表…</h2><ul>
+<li>使用语义标题和内容使手机或屏幕阅读器能够读取有序的标记。</li>
+<li>抛弃“行”包装的概念。</li>
+<li>为每个单元的宽度设置每个单元的百分比数字的宽度。自动调整列宽是不可能的。</li>
+</ul>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/rowtable.png" alt="面向行型的表"><a href="http://codepen.io/team/css-tricks/pen/wGJVqq" target="_blank" rel="external">CODEPEN</a></p>
+<h2 id="1b-面向列型的表…"><a href="#1b-面向列型的表…" class="headerlink" title="1b) 面向列型的表…"></a>1b) 面向列型的表…</h2><p>设置按行活动以立即创建一个垂直的表。这必须是内联，否则我们就需要每一行都有一个特别的类。手动来做很容易，或者用 CMS 或 JavaScript 来应用也很容易。</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/coltable.png" alt="面向列型的表"><a href="http://codepen.io/team/css-tricks/pen/LNWwzY" target="_blank" rel="external">CODEPEN</a></p>
+<h2 id="2-使用样式做连接"><a href="#2-使用样式做连接" class="headerlink" title="2)使用样式做连接"></a>2)使用样式做连接</h2><ul>
+<li>你需要在任何模式中单独设置单元格样式。</li>
+<li>用负边界值使得单元格边框重叠。</li>
+</ul>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/cellstyle.png" alt="使用样式做连接"><a href="http://codepen.io/davidelrizzo/pen/BjgXGg" target="_blank" rel="external">CODEPEN</a></p>
+<h2 id="3-在小屏设备上折叠成块"><a href="#3-在小屏设备上折叠成块" class="headerlink" title="3)在小屏设备上折叠成块"></a>3)在小屏设备上折叠成块</h2><p>在小屏设备的媒体查询，把所有的都设为 display:block。这是响应式的表！</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/respontable.png" alt="折叠成块"><a href="http://codepen.io/team/css-tricks/pen/KzWORB" target="_blank" rel="external">CODEPEN</a></p>
+<h2 id="3b-折叠标签"><a href="#3b-折叠标签" class="headerlink" title="3b)折叠标签"></a>3b)折叠标签</h2><p>折叠标签在表内的逻辑位置上。<br>根据单元格顺序切换行或列。<br>为视觉用户和屏幕阅读器使用 display: none 切换。</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/collapse.png" alt="折叠标签"><a href="http://codepen.io/team/css-tricks/pen/PNpMaj" target="_blank" rel="external">CODEPEN</a></p>
+<h1 id="其他增强功能"><a href="#其他增强功能" class="headerlink" title="其他增强功能"></a>其他增强功能</h1><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/content-alignment.png" alt="单元格内容对齐"><br><a href="http://codepen.io/davidelrizzo/pen/PZMYWw?editors=0100" target="_blank" rel="external">单元格内容对齐</a></p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/column-margins.png" alt="增加列空隙"><br><a href="http://codepen.io/davidelrizzo/pen/LGwPeq?editors=0100" target="_blank" rel="external">增加列空隙</a></p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/zebra.png" alt="条纹状的表"><br><a href="http://codepen.io/davidelrizzo/pen/BjXBrz?editors=0110" target="_blank" rel="external">条纹状的表</a></p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/spans.png" alt="手动设置单元格宽度仿跨列效果"><br><a href="http://codepen.io/davidelrizzo/pen/gPVbYe?editors=1100" target="_blank" rel="external">手动设置单元格宽度仿跨列效果</a><br>（备注：在伸缩表上是不能跨行的）</p>
+<h1 id="可以给其它类型的标记使用相同的单元格样式"><a href="#可以给其它类型的标记使用相同的单元格样式" class="headerlink" title="可以给其它类型的标记使用相同的单元格样式"></a>可以给其它类型的标记使用相同的单元格样式</h1><p>即使是标准表的标记！</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/lastmarkup.png" alt="可以给其它类型的标记使用相同的单元格样式"><a href="http://codepen.io/team/css-tricks/pen/pyPzzG" target="_blank" rel="external">CODEPEN</a></p>
+<h1 id="非伸缩布局盒的回滚机制"><a href="#非伸缩布局盒的回滚机制" class="headerlink" title="非伸缩布局盒的回滚机制"></a>非伸缩布局盒的回滚机制</h1><p>IE9 及以下不支持伸缩布局盒。对于老浏览器，可以检测 Flexbox（用 <a href="https://modernizr.com" title="Modernizer" target="_blank" rel="external">Modernizer</a>），并显示手机版本，这是一个很好的优雅降级的例子。</p>
+<pre><code>.no-flexbox .Rtable &gt; .Rtable-cell {
+ display: block; 
+}
+</code></pre><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>总体来说，这些方法非常灵活，你可能会考虑把这些技术用在你的表格上。你可以继续用 CSS 添加不同的主题和风格，设计师们会更有效的了解响应式表能够做什么。</p>
+<h1 id="响应式表相关资源"><a href="#响应式表相关资源" class="headerlink" title="响应式表相关资源"></a>响应式表相关资源</h1><ul>
+<li>CSS-Trick 网：<a href="https://css-tricks.com/responsive-data-table-roundup/" target="_blank" rel="external">响应式数据表综述</a></li>
+<li>David Bushell：<a href="http://dbushell.com/2016/03/04/css-only-responsive-tables/" target="_blank" rel="external">响应式表与 CSS</a></li>
+<li>Filament 小组：<a href="https://github.com/filamentgroup/tablesaw" target="_blank" rel="external">Tablesaw</a>（一组响应式表插件）</li>
+<li>Jason Grigsby：<a href="http://blog.cloudfour.com/picking-responsive-tables-solution/" target="_blank" rel="external">响应式表解决方案</a></li>
+<li>CSS-Trick 网：<a href="https://css-tricks.com/responsive-data-tables/" target="_blank" rel="external">响应式数据表</a></li>
+<li>Cody 之家：<a href="https://codyhouse.co/gem/products-comparison-table/" target="_blank" rel="external">响应式对照表</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/22/给-HEXO-博客自定义背景图/" itemprop="url">
                   给 HEXO 博客自定义背景图
                 </a>
@@ -723,7 +905,7 @@ columns: 3 200px;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -740,7 +922,7 @@ columns: 3 200px;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
