@@ -316,16 +316,16 @@
 <p>我用一个<a href="http://codepen.io/davidelrizzo/full/dGBpZK/" title="简单的表格" target="_blank" rel="external">简单的表格</a>做了一些测试。通过一些屏幕阅读器（<a href="http://www.chromevox.com/" title="Chrome Vox" target="_blank" rel="external">Chrome Vox</a> 和 <a href="https://www.apple.com/voiceover/info/guide/" title="VoiceOver" target="_blank" rel="external">VoiceOver</a>），我试图定位标记：</p>
 <ul>
 <li>ChromeVox 会告诉你有个表格，VoiceOver 还会告诉你有多少行和列（这更有用）。</li>
-<li>ChromeVox 或 VoiceOver都会告诉你表的标题。<thead>，<th> 甚至 scope=”row|col” 似乎并没有什么用。只有一种识别他们的方法就是把它包进 <h#> 标记中。</h#></th></thead></li>
+<li>ChromeVox 或 VoiceOver 都会告诉你表的标题。<code>&lt;thead&gt;</code>，<code>&lt;th&gt;</code> 甚至 <code>scope=&quot;row|col&quot;</code> 似乎并没有什么用。只有一种识别他们的方法就是把它包进 <code>&lt;h#&gt;</code> 标记中。</li>
 <li>阅读器逐行遍历表格，也并不会管表的内容如何。VoiceOver 至少可以使用方向键在表内定位，但仍然没办法指明以何种顺序定位。</li>
 <li>其实，没有哪种标记会告诉屏幕阅读器的用户，是应该通过行还是列阅读。有意义的标记仍然来自非表格语义内容。</li>
 </ul>
 <h1 id="响应表的方法"><a href="#响应表的方法" class="headerlink" title="响应表的方法"></a>响应表的方法</h1><p>让我们来想一个不同的响应式的表方法：</p>
 <ol>
 <li>压扁：如果列没有内容可以水平压扁，在手机屏幕上通常是没问题的，而且也没有改变布局，这是一个可行的方法。</li>
-<li>水平滚动：如果布局和内容是准确的和关键的，用户可以向左向右滚动。这个可以用 CSS 的 overflow=”auto” 包装。</li>
-<li>按行折叠：在小屏幕上把每行分割到一个小的单列表格中。把 display:table 换成 display:block 可以用普通表标记实现。</li>
-<li>按列折叠：这可是个棘手的事情，因为代码的顺序是按行和用 <tr> 标签包裹的，所以不能用纯 CSS 普通表标记完成。我们不得不要么改标记要么使用JavaScript实现。</tr></li>
+<li>水平滚动：如果布局和内容是准确的和关键的，用户可以向左向右滚动。这个可以用 CSS 的 <code>overflow=&quot;auto&quot;</code> 包装。</li>
+<li>按行折叠：在小屏幕上把每行分割到一个小的单列表格中。把 <code>display:table</code> 换成 <code>display:block</code> 可以用普通表标记实现。</li>
+<li>按列折叠：这可是个棘手的事情，因为代码的顺序是按行和用 <code>&lt;tr&gt;</code> 标签包裹的，所以不能用纯 CSS 普通表标记完成。我们不得不要么改标记要么使用 JavaScript 实现。</li>
 </ol>
 <p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/types-of-responsive-tables.gif" alt="这四种表格的视觉化例子"><br>这四种表格的视觉化例子</p>
 <h1 id="不推荐建立响应式表的方式"><a href="#不推荐建立响应式表的方式" class="headerlink" title="不推荐建立响应式表的方式"></a>不推荐建立响应式表的方式</h1><p>经过反复实验，我放弃了下面这些方法：</p>
@@ -334,7 +334,7 @@
 </li>
 <li><p>使用普通表标记和在 JavaScript 断点的处把表重新安排进一个响应式的里面。<br><strong>为什么不呢？</strong>需要对垂直和水平的表进行不同的标记。这会打破表内容的 JS 初始化，还需要大量的 JS 事件侦听器和 DOM 操作。</p>
 </li>
-<li><p>保持表格标记，但是切换到 display:flex 以垂直对其表内容。<br><strong>为什么不呢？</strong>不可能通过 <tr> 标签跨行对其单元格，并且 display: table-cell 会覆盖 flex-item。</tr></p>
+<li><p>保持表格标记，但是切换到 <code>display:flex</code> 以垂直对其表内容。<br><strong>为什么不呢？</strong>不可能通过 <code>&lt;tr&gt;</code> 标签跨行对其单元格，并且 <code>display:table-cell</code> 会覆盖 <code>flex-item</code>。</p>
 </li>
 </ol>
 <h1 id="flexbox-的响应表"><a href="#flexbox-的响应表" class="headerlink" title="flexbox 的响应表"></a>flexbox 的响应表</h1><h2 id="1a-面向行型的表…"><a href="#1a-面向行型的表…" class="headerlink" title="1a) 面向行型的表…"></a>1a) 面向行型的表…</h2><ul>
@@ -350,9 +350,9 @@
 <li>用负边界值使得单元格边框重叠。</li>
 </ul>
 <p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/cellstyle.png" alt="使用样式做连接"><a href="http://codepen.io/davidelrizzo/pen/BjgXGg" target="_blank" rel="external">CODEPEN</a></p>
-<h2 id="3-在小屏设备上折叠成块"><a href="#3-在小屏设备上折叠成块" class="headerlink" title="3)在小屏设备上折叠成块"></a>3)在小屏设备上折叠成块</h2><p>在小屏设备的媒体查询，把所有的都设为 display:block。这是响应式的表！</p>
+<h2 id="3-在小屏设备上折叠成块"><a href="#3-在小屏设备上折叠成块" class="headerlink" title="3)在小屏设备上折叠成块"></a>3)在小屏设备上折叠成块</h2><p>在小屏设备的媒体查询，把所有的都设为 <code>display:block</code>。这是响应式的表！</p>
 <p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/respontable.png" alt="折叠成块"><a href="http://codepen.io/team/css-tricks/pen/KzWORB" target="_blank" rel="external">CODEPEN</a></p>
-<h2 id="3b-折叠标签"><a href="#3b-折叠标签" class="headerlink" title="3b)折叠标签"></a>3b)折叠标签</h2><p>折叠标签在表内的逻辑位置上。<br>根据单元格顺序切换行或列。<br>为视觉用户和屏幕阅读器使用 display: none 切换。</p>
+<h2 id="3b-折叠标签"><a href="#3b-折叠标签" class="headerlink" title="3b)折叠标签"></a>3b)折叠标签</h2><p>折叠标签在表内的逻辑位置上。<br>根据单元格顺序切换行或列。<br>为视觉用户和屏幕阅读器使用 <code>display:none</code> 切换。</p>
 <p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/collapse.png" alt="折叠标签"><a href="http://codepen.io/team/css-tricks/pen/PNpMaj" target="_blank" rel="external">CODEPEN</a></p>
 <h1 id="其他增强功能"><a href="#其他增强功能" class="headerlink" title="其他增强功能"></a>其他增强功能</h1><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/content-alignment.png" alt="单元格内容对齐"><br><a href="http://codepen.io/davidelrizzo/pen/PZMYWw?editors=0100" target="_blank" rel="external">单元格内容对齐</a></p>
 <p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/column-margins.png" alt="增加列空隙"><br><a href="http://codepen.io/davidelrizzo/pen/LGwPeq?editors=0100" target="_blank" rel="external">增加列空隙</a></p>
