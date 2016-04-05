@@ -69,7 +69,7 @@
 
 对有的人来说，阅读一段有很长文字内容的时候可能会出现这样的问题，不是丢字了就是落行了。这个问题很容易通过把内容以多栏进行布局的方式解决。文字的多栏化在出版物中几乎无处不在。利用 CSS 多栏布局模块的功能可以使我们在网站上也能制作出类似的多栏效果。
 有个问题是我们在设计网页时，是很难控制多栏">
-<meta property="og:updated_time" content="2016-03-22T01:20:31.215Z">
+<meta property="og:updated_time" content="2016-04-05T08:52:42.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="译文：CSS多栏布局新手教程">
 <meta name="twitter:description" content="原文：A CSS Multi-column Layout Tutorial for Beginners
@@ -316,6 +316,7 @@
 <h1 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h1><p>如果你在代码里加上一些前缀的话，浏览器就能够很好地支持多栏布局了。根据 <a href="http://caniuse.com/#feat=multicolumn" target="_blank" rel="external">Can I Use</a> 的全球统计来看，95.32％浏览器都是支持多栏的。像 IE10 及以上，EDGE 和 Opera Mini 等浏览器能够完整支持多栏布局。其他的比如 Firefox 和 Chrome 浏览器需要加前缀代码。</p>
 <p>如果你想兼容老版本浏览器（IE9 及以下）的话，有个 <a href="https://github.com/BetleyWhitehorne/CSS3MultiColumn" title="老的填充工具" target="_blank" rel="external">老的补丁</a> 你可以试试。当然，如果一个浏览器根本不支持多栏效果的话，就会变回单栏布局。因此，使用补丁可能不是最好的选择。</p>
 <p>CSS 多栏布局模块有许多不同的属性。下面我会一一的解释。</p>
+<a id="more"></a>
 <h1 id="column-count-和-column-width"><a href="#column-count-和-column-width" class="headerlink" title="column-count 和 column-width"></a>column-count 和 column-width</h1><p>column-count 属性可以给一个元素设定一定数量的栏。你可以将其设置为 auto 或是一个整数。如果设置为 auto，栏数将根据 column-width 属性自动确定。如果设置为一个整数，所有的栏会被设置成相等的宽度。</p>
 <p>column-width 属性可以给一个元素设定一个特定的栏宽。但并非严格如此的，如果没有足够的空间栏会变窄。该属性也可以同时设置一个 auto 或一个整数的值。如果设置为 auto ，宽度将被 column-count 属性确定，所有栏平均分配总宽度。</p>
 <p>还有，这两个值可以同时使用 columns 属性来简写设置。columns 属性语法是：</p>

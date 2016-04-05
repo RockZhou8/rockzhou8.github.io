@@ -304,77 +304,18 @@
 
       
         
-          
-            <blockquote>
-<p>原文：<br><a href="https://css-tricks.com/accessible-simple-responsive-tables/" target="_blank" rel="external">Accessible, Simple, Responsive Tables</a></p>
+          <blockquote>
+<p>原文：<br><a href="https://css-tricks.com/accessible-simple-responsive-tables/">Accessible, Simple, Responsive Tables</a></p>
 </blockquote>
-<p><strong>你必须承认，没有一种单一地能使表格响应式表现的方法，然后我们再来想办法来解决</strong>。<a href="http://www.davidelrizzo.com/" title="Davide Rizzo" target="_blank" rel="external">Davide Rizzo</a> 说过的这个我很赞同，并且这一伟大的领域我们<a href="https://css-tricks.com/tag/responsive-tables/" title="已经实践" target="_blank" rel="external">已经实践</a>了一段时间。</p>
+<p><strong>你必须承认，没有一种单一地能使表格响应式表现的方法，然后我们再来想办法来解决</strong>。<a href="http://www.davidelrizzo.com/" title="Davide Rizzo">Davide Rizzo</a> 说过的这个我很赞同，并且这一伟大的领域我们<a href="https://css-tricks.com/tag/responsive-tables/" title="已经实践">已经实践</a>了一段时间。</p>
 <h1 id="内容和比较表"><a href="#内容和比较表" class="headerlink" title="内容和比较表"></a>内容和比较表</h1><p>在一些有各种类型表格的网页上，内容会任意的疯狂地响应式的变化。我觉得最棘手的是对照表和普通内容布局表，而且也没有通用的基于 CSS 的解决方案。</p>
 <p>我寻求一个灵活和简单的解决方案，一个可复用的 Web 组件，并且可以不管其中的内容。</p>
 <p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/ComparisonTables.jpg" alt="对照表的例子"><br>对照表的例子</p>
-<h1 id="表标记还能为我所用吗？"><a href="#表标记还能为我所用吗？" class="headerlink" title="表标记还能为我所用吗？"></a>表标记还能为我所用吗？</h1><p>标准表的标记似乎很有语义感，并且对其单元格也很有用。我主要关注的是通俗易懂。本地表标记能够使用户通过屏幕阅读器获取内容并定位吗？</p>
-<p>我用一个<a href="http://codepen.io/davidelrizzo/full/dGBpZK/" title="简单的表格" target="_blank" rel="external">简单的表格</a>做了一些测试。通过一些屏幕阅读器（<a href="http://www.chromevox.com/" title="Chrome Vox" target="_blank" rel="external">Chrome Vox</a> 和 <a href="https://www.apple.com/voiceover/info/guide/" title="VoiceOver" target="_blank" rel="external">VoiceOver</a>），我试图定位标记：</p>
-<ul>
-<li>ChromeVox 会告诉你有个表格，VoiceOver 还会告诉你有多少行和列（这更有用）。</li>
-<li>ChromeVox 或 VoiceOver 都会告诉你表的标题。<code>&lt;thead&gt;</code>，<code>&lt;th&gt;</code> 甚至 <code>scope=&quot;row|col&quot;</code> 似乎并没有什么用。只有一种识别他们的方法就是把它包进 <code>&lt;h#&gt;</code> 标记中。</li>
-<li>阅读器逐行遍历表格，也并不会管表的内容如何。VoiceOver 至少可以使用方向键在表内定位，但仍然没办法指明以何种顺序定位。</li>
-<li>其实，没有哪种标记会告诉屏幕阅读器的用户，是应该通过行还是列阅读。有意义的标记仍然来自非表格语义内容。</li>
-</ul>
-<h1 id="响应表的方法"><a href="#响应表的方法" class="headerlink" title="响应表的方法"></a>响应表的方法</h1><p>让我们来想一个不同的响应式的表方法：</p>
-<ol>
-<li>压扁：如果列没有内容可以水平压扁，在手机屏幕上通常是没问题的，而且也没有改变布局，这是一个可行的方法。</li>
-<li>水平滚动：如果布局和内容是准确的和关键的，用户可以向左向右滚动。这个可以用 CSS 的 <code>overflow=&quot;auto&quot;</code> 包装。</li>
-<li>按行折叠：在小屏幕上把每行分割到一个小的单列表格中。把 <code>display:table</code> 换成 <code>display:block</code> 可以用普通表标记实现。</li>
-<li>按列折叠：这可是个棘手的事情，因为代码的顺序是按行和用 <code>&lt;tr&gt;</code> 标签包裹的，所以不能用纯 CSS 普通表标记完成。我们不得不要么改标记要么使用 JavaScript 实现。</li>
-</ol>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/types-of-responsive-tables.gif" alt="这四种表格的视觉化例子"><br>这四种表格的视觉化例子</p>
-<h1 id="不推荐建立响应式表的方式"><a href="#不推荐建立响应式表的方式" class="headerlink" title="不推荐建立响应式表的方式"></a>不推荐建立响应式表的方式</h1><p>经过反复实验，我放弃了下面这些方法：</p>
-<ol>
-<li><p>建立另一个窄的表格，通过 JavaScript 断点来隐藏、显示交替实现。<br><strong>为什么不呢？</strong>内容重复，也不比一个 “.m” 站点好，还会打散表内的特殊 ID。风格指南驱动组件不是一个好主意。</p>
-</li>
-<li><p>使用普通表标记和在 JavaScript 断点的处把表重新安排进一个响应式的里面。<br><strong>为什么不呢？</strong>需要对垂直和水平的表进行不同的标记。这会打破表内容的 JS 初始化，还需要大量的 JS 事件侦听器和 DOM 操作。</p>
-</li>
-<li><p>保持表格标记，但是切换到 <code>display:flex</code> 以垂直对其表内容。<br><strong>为什么不呢？</strong>不可能通过 <code>&lt;tr&gt;</code> 标签跨行对其单元格，并且 <code>display:table-cell</code> 会覆盖 <code>flex-item</code>。</p>
-</li>
-</ol>
-<h1 id="flexbox-的响应表"><a href="#flexbox-的响应表" class="headerlink" title="flexbox 的响应表"></a>flexbox 的响应表</h1><h2 id="1a-面向行型的表…"><a href="#1a-面向行型的表…" class="headerlink" title="1a) 面向行型的表…"></a>1a) 面向行型的表…</h2><ul>
-<li>使用语义标题和内容使手机或屏幕阅读器能够读取有序的标记。</li>
-<li>抛弃“行”包装的概念。</li>
-<li>为每个单元的宽度设置每个单元的百分比数字的宽度。自动调整列宽是不可能的。</li>
-</ul>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/rowtable.png" alt="面向行型的表"><a href="http://codepen.io/team/css-tricks/pen/wGJVqq" target="_blank" rel="external">CODEPEN</a></p>
-<h2 id="1b-面向列型的表…"><a href="#1b-面向列型的表…" class="headerlink" title="1b) 面向列型的表…"></a>1b) 面向列型的表…</h2><p>设置按行活动以立即创建一个垂直的表。这必须是内联，否则我们就需要每一行都有一个特别的类。手动来做很容易，或者用 CMS 或 JavaScript 来应用也很容易。</p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/coltable.png" alt="面向列型的表"><a href="http://codepen.io/team/css-tricks/pen/LNWwzY" target="_blank" rel="external">CODEPEN</a></p>
-<h2 id="2-使用样式做连接"><a href="#2-使用样式做连接" class="headerlink" title="2)使用样式做连接"></a>2)使用样式做连接</h2><ul>
-<li>你需要在任何模式中单独设置单元格样式。</li>
-<li>用负边界值使得单元格边框重叠。</li>
-</ul>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/cellstyle.png" alt="使用样式做连接"><a href="http://codepen.io/davidelrizzo/pen/BjgXGg" target="_blank" rel="external">CODEPEN</a></p>
-<h2 id="3-在小屏设备上折叠成块"><a href="#3-在小屏设备上折叠成块" class="headerlink" title="3)在小屏设备上折叠成块"></a>3)在小屏设备上折叠成块</h2><p>在小屏设备的媒体查询，把所有的都设为 <code>display:block</code>。这是响应式的表！</p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/respontable.png" alt="折叠成块"><a href="http://codepen.io/team/css-tricks/pen/KzWORB" target="_blank" rel="external">CODEPEN</a></p>
-<h2 id="3b-折叠标签"><a href="#3b-折叠标签" class="headerlink" title="3b)折叠标签"></a>3b)折叠标签</h2><p>折叠标签在表内的逻辑位置上。<br>根据单元格顺序切换行或列。<br>为视觉用户和屏幕阅读器使用 <code>display:none</code> 切换。</p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/collapse.png" alt="折叠标签"><a href="http://codepen.io/team/css-tricks/pen/PNpMaj" target="_blank" rel="external">CODEPEN</a></p>
-<h1 id="其他增强功能"><a href="#其他增强功能" class="headerlink" title="其他增强功能"></a>其他增强功能</h1><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/content-alignment.png" alt="单元格内容对齐"><br><a href="http://codepen.io/davidelrizzo/pen/PZMYWw?editors=0100" target="_blank" rel="external">单元格内容对齐</a></p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/column-margins.png" alt="增加列空隙"><br><a href="http://codepen.io/davidelrizzo/pen/LGwPeq?editors=0100" target="_blank" rel="external">增加列空隙</a></p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/zebra.png" alt="条纹状的表"><br><a href="http://codepen.io/davidelrizzo/pen/BjXBrz?editors=0110" target="_blank" rel="external">条纹状的表</a></p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/spans.png" alt="手动设置单元格宽度仿跨列效果"><br><a href="http://codepen.io/davidelrizzo/pen/gPVbYe?editors=1100" target="_blank" rel="external">手动设置单元格宽度仿跨列效果</a><br>（备注：在伸缩表上是不能跨行的）</p>
-<h1 id="可以给其它类型的标记使用相同的单元格样式"><a href="#可以给其它类型的标记使用相同的单元格样式" class="headerlink" title="可以给其它类型的标记使用相同的单元格样式"></a>可以给其它类型的标记使用相同的单元格样式</h1><p>即使是标准表的标记！</p>
-<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-3/lastmarkup.png" alt="可以给其它类型的标记使用相同的单元格样式"><a href="http://codepen.io/team/css-tricks/pen/pyPzzG" target="_blank" rel="external">CODEPEN</a></p>
-<h1 id="非伸缩布局盒的回滚机制"><a href="#非伸缩布局盒的回滚机制" class="headerlink" title="非伸缩布局盒的回滚机制"></a>非伸缩布局盒的回滚机制</h1><p>IE9 及以下不支持伸缩布局盒。对于老浏览器，可以检测 Flexbox（用 <a href="https://modernizr.com" title="Modernizer" target="_blank" rel="external">Modernizer</a>），并显示手机版本，这是一个很好的优雅降级的例子。</p>
-<pre><code>.no-flexbox .Rtable &gt; .Rtable-cell {
- display: block; 
-}
-</code></pre><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>总体来说，这些方法非常灵活，你可能会考虑把这些技术用在你的表格上。你可以继续用 CSS 添加不同的主题和风格，设计师们会更有效的了解响应式表能够做什么。</p>
-<h1 id="响应式表相关资源"><a href="#响应式表相关资源" class="headerlink" title="响应式表相关资源"></a>响应式表相关资源</h1><ul>
-<li>CSS-Trick 网：<a href="https://css-tricks.com/responsive-data-table-roundup/" target="_blank" rel="external">响应式数据表综述</a></li>
-<li>David Bushell：<a href="http://dbushell.com/2016/03/04/css-only-responsive-tables/" target="_blank" rel="external">响应式表与 CSS</a></li>
-<li>Filament 小组：<a href="https://github.com/filamentgroup/tablesaw" target="_blank" rel="external">Tablesaw</a>（一组响应式表插件）</li>
-<li>Jason Grigsby：<a href="http://blog.cloudfour.com/picking-responsive-tables-solution/" target="_blank" rel="external">响应式表解决方案</a></li>
-<li>CSS-Trick 网：<a href="https://css-tricks.com/responsive-data-tables/" target="_blank" rel="external">响应式数据表</a></li>
-<li>Cody 之家：<a href="https://codyhouse.co/gem/products-comparison-table/" target="_blank" rel="external">响应式对照表</a></li>
-</ul>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/03/译文：简洁明了的响应式表格/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -486,52 +427,20 @@
 
       
         
-          
-            <p>最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：</p>
+          <p>最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：</p>
 <ul>
-<li><a href="http://iread.io/tags/Hexo/" target="_blank" rel="external">叶阳栩宁的教程</a></li>
-<li><a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">Zipperary 的教程</a></li>
-<li><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">IIssNan 的 NexT 主题</a></li>
+<li><a href="http://iread.io/tags/Hexo/">叶阳栩宁的教程</a></li>
+<li><a href="http://zipperary.com/categories/hexo/">Zipperary 的教程</a></li>
+<li><a href="http://theme-next.iissnan.com/">IIssNan 的 NexT 主题</a></li>
 </ul>
 <p>虽然有现成的教程，但是在搭博客的时候还是走了点弯路，碰到些奇奇怪怪的问题，好在有 Google 大法，解决了不少问题。</p>
 <p>博客搭建完之后，只有一篇自动生成的 Hello World，于是我把最近个人翻译的两篇关于 CSS 的文章也发了上来，于是博客便有了点自己的东西了：<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/blog.jpg" alt="我的blog首页"></p>
 <p>NexT 主题有三种样式，都是这种白底黑字很淡雅的，但是我看着白色的背景挺单调的，就想着如何用刚学的 CSS 来给我的博客添加背景图片，略微“美化”一下。</p>
-<p>在 NexT 主题的 github 的 issue 里，我找到了如何自定义一些页面样式的方法，作者 IISSNan 很贴心的在主题的 “\source\css_custom\” 文件夹下放了一个 custom.styl 文件，可以让用户自己在里面写 CSS 代码以个性化自己的博客。<br>于是我找到这个文件，并找到一张去年在三亚拍的大海照片用作背景，开始编写代码了！<br>首先我尝试输入了如下的 CSS 代码，主要是来测试一下这个 custom.styl 是否真的有效：</p>
-<pre><code>body{
-background-image:url(/images/background.jpg);
-}
-</code></pre><p>保存之后，刷新一下本地博客的网页（毕竟还没有 deploy 部署上传），看来我已经成功地给博客加上背景图片了，显然这离美观还差好大一截呢，文章比较长的时候，图片就又重复了一张出来，如图：<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom2.jpg" alt="背景图会重复出现"></p>
-<p>因此，我想做到：</p>
-<ol>
-<li>图片平铺在页面上</li>
-<li>平铺之后不会因为往下滚动图片就会消失</li>
-</ol>
-<p>于是添加定义 background-repeat 和 background-attachment 属性的代码：</p>
-<pre><code>body{
-background-image:url(/images/background.jpg);
-background-repeat: no-repeat;
-background-attachment:fixed;
-}
-</code></pre><p>但是又出现了新的问题，背景图只有左上角的一部分区域平铺到网页之中，其他的都看不到了，我的照片只看得到蓝天，看不到大海了，查看 <a href="http://www.w3school.com.cn/css/css_background.asp" target="_blank" rel="external">W3school</a> 发现使用 <code>background-position:50% 50%;</code> 代码可以解决！</p>
-<blockquote>
-<p>这会导致图像适当放置，其中心与其元素的中心对齐。换句话说，百分数值同时应用于元素和图像。也就是说，图像中描述为 50% 50% 的点（中心点）与元素中描述为 50% 50% 的点（中心点）对齐。</p>
-</blockquote>
-<p>于是再次修改代码：</p>
-<pre><code>body{
-background-image:url(/images/background.jpg);
-background-repeat: no-repeat;
-background-attachment:fixed;
-background-position:50% 50%; 
-}
-</code></pre><p>现在，背景图的设置就基本告一段落了。再浏览一下，当我向下滚动条到最底的时候，发现页脚最下方的版权文字是浅灰色的，在之前 NexT 主题默认的纯白的背景色上没问题，然而在我的背景图上就会不那么明显。<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg"></p>
-<p>于是我选择继续修改 CSS 代码，想个办法给这几个字改一下颜色吧。<br>通过 Chrome 浏览器自带的开发者工具，可以找到页脚所在的文字是在 footer 的类下面，通过右边修改 color 的颜色值可以所见即所得地调整出一个我想要的颜色。然后，我继续在 custom.styl 文件里添加如下的代码：</p>
-<pre><code>footer{
-color:#eee;
-}
-</code></pre><p>刷新之后，再次发现字体颜色已经变成我想要的颜色了。</p>
-<p><a href="http://rockzhou8.github.io/">我的博客</a>已经搭建完毕了，以后我会将学习的笔记和个人心得等放上来，也欢迎各位访问和交流。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/22/给-HEXO-博客自定义背景图/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -643,72 +552,19 @@ color:#eee;
 
       
         
-          
-            <blockquote>
-<p>原文：<br><a href="http://www.sitepoint.com/css-multi-column-layout-tutorial-for-beginners/" target="_blank" rel="external">A CSS Multi-column Layout Tutorial for Beginners</a></p>
+          <blockquote>
+<p>原文：<br><a href="http://www.sitepoint.com/css-multi-column-layout-tutorial-for-beginners/">A CSS Multi-column Layout Tutorial for Beginners</a></p>
 </blockquote>
 <p>对有的人来说，阅读一段有很长文字内容的时候可能会出现这样的问题，不是丢字了就是落行了。这个问题很容易通过把内容以多栏进行布局的方式解决。文字的多栏化在出版物中几乎无处不在。利用 CSS 多栏布局模块的功能可以使我们在网站上也能制作出类似的多栏效果。</p>
 <p>有个问题是我们在设计网页时，是很难控制多栏大小的。在本次教程中，我会教你如何创建一个精美的且能够自适应各种屏幕尺寸的响应式多栏布局。我们先从最基本的开始，然后再深入到更复杂的概念。</p>
-<h1 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h1><p>如果你在代码里加上一些前缀的话，浏览器就能够很好地支持多栏布局了。根据 <a href="http://caniuse.com/#feat=multicolumn" target="_blank" rel="external">Can I Use</a> 的全球统计来看，95.32％浏览器都是支持多栏的。像 IE10 及以上，EDGE 和 Opera Mini 等浏览器能够完整支持多栏布局。其他的比如 Firefox 和 Chrome 浏览器需要加前缀代码。</p>
-<p>如果你想兼容老版本浏览器（IE9 及以下）的话，有个 <a href="https://github.com/BetleyWhitehorne/CSS3MultiColumn" title="老的填充工具" target="_blank" rel="external">老的补丁</a> 你可以试试。当然，如果一个浏览器根本不支持多栏效果的话，就会变回单栏布局。因此，使用补丁可能不是最好的选择。</p>
+<h1 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h1><p>如果你在代码里加上一些前缀的话，浏览器就能够很好地支持多栏布局了。根据 <a href="http://caniuse.com/#feat=multicolumn">Can I Use</a> 的全球统计来看，95.32％浏览器都是支持多栏的。像 IE10 及以上，EDGE 和 Opera Mini 等浏览器能够完整支持多栏布局。其他的比如 Firefox 和 Chrome 浏览器需要加前缀代码。</p>
+<p>如果你想兼容老版本浏览器（IE9 及以下）的话，有个 <a href="https://github.com/BetleyWhitehorne/CSS3MultiColumn" title="老的填充工具">老的补丁</a> 你可以试试。当然，如果一个浏览器根本不支持多栏效果的话，就会变回单栏布局。因此，使用补丁可能不是最好的选择。</p>
 <p>CSS 多栏布局模块有许多不同的属性。下面我会一一的解释。</p>
-<h1 id="column-count-和-column-width"><a href="#column-count-和-column-width" class="headerlink" title="column-count 和 column-width"></a>column-count 和 column-width</h1><p>column-count 属性可以给一个元素设定一定数量的栏。你可以将其设置为 auto 或是一个整数。如果设置为 auto，栏数将根据 column-width 属性自动确定。如果设置为一个整数，所有的栏会被设置成相等的宽度。</p>
-<p>column-width 属性可以给一个元素设定一个特定的栏宽。但并非严格如此的，如果没有足够的空间栏会变窄。该属性也可以同时设置一个 auto 或一个整数的值。如果设置为 auto ，宽度将被 column-count 属性确定，所有栏平均分配总宽度。</p>
-<p>还有，这两个值可以同时使用 columns 属性来简写设置。columns 属性语法是：</p>
-<pre><code>.example { columns: &lt;&apos;column-width&apos;&gt; || &lt;&apos;column-count&apos;&gt; } 
-</code></pre><p>下面是这个属性的几个例子，每个旁边有相应的解释：</p>
-<pre><code>.example {
-columns: 10em;  /* column-width: 10em / column-count: auto */
-columns: 4; /* column-width: auto / column-count: 4 */
-columns: 4 auto;/* column-width: auto / column-count: 4 */
-columns: auto 10em; /* column-count: auto / column-width: 4(译者注：原文错，这里应该是10em) */
-columns: auto;  /* column-count: auto / column-width: auto */
-columns: auto auto; /* column-count: auto / column-width: auto */
-}
-</code></pre><p>你可以看到，第一个 columns 的简写和第四个的定义是一样的，而第二个和第三个也是一样的。也就是说，如果一个整数没有单位的话，就会被解析为 column-count。</p>
-<p><a href="http://codepen.io/SitePoint/pen/WwvMQK" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<p>如果调整一下窗口大小，你会发现：</p>
-<ul>
-<li>column-count 属性始终保持你设置的栏数，只有栏宽会变。</li>
-<li>column-width 属性会根据可用空间自动变化。这种方式调整的栏宽会比规定栏数来的更好。如果没有足够的可用空间，它也可以调整栏宽变的很小。</li>
-<li>columns 属性使用 column-count 值限制最大的栏。这样的方式调节宽度 column-count 不会超出限制并且 column-width 也会更接近设定的宽度。<h1 id="column-gap-和-column-rule"><a href="#column-gap-和-column-rule" class="headerlink" title="column-gap 和 column-rule"></a>column-gap 和 column-rule</h1>column-gap 属性允许我们设定栏和栏之间的间隙。你可以将其设置为 normal 或是一个长度值，可以是零，但不能为负。当你将它设置为 normal，是会根据浏览器的默认值设置间隙。</li>
-</ul>
-<p>column-rule 属性是一个简写，使我们能够添加栏之间的线。这个类似于 border-left 或 border-right 属性。此属性的语法如下：</p>
-<pre><code>.example {
-column-rule: &lt;&apos;column-rule-width&apos;&gt; || &lt;&apos;column-rule-style&apos;&gt; || &lt;&apos;column-rule-color&apos;&gt;
-}
-</code></pre><p>对于 column-rule-width，你可以像指定 3 px 这样一个宽度或使用关键字：thin，medium 或 thick。column-rule-style 可以使用 dashed，dotted，solid 等值，你可以使用 border-style 的有效值定义 column-rule-style，并且 column-rule-color 可以使用任何有效的颜色值。</p>
-<p><a href="http://codepen.io/SitePoint/pen/PNqQxd" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<h1 id="column-fill-和-column-span"><a href="#column-fill-和-column-span" class="headerlink" title="column-fill 和 column-span"></a>column-fill 和 column-span</h1><p>column-fill 属性可以确定文字是如何被分配到各栏当中的。这个属性可以设置为 auto 或 balance。如果设置为 auto，依次填充进每栏。采用 balance 可以确保文字会被所有栏平分。</p>
-<p>有一点要提醒的是，如果你一个栏设置了固定的高度，Firefox 会自动平分文字内容，而其他的浏览器会依次填充进每栏。</p>
-<p>column-span 属性可以控制多个栏如何跨越。它有两个值：all 或 none。当设置为 all 的元素在所有栏跨越。此属性 Firefox 不支持。</p>
-<p><a href="http://codepen.io/SitePoint/pen/yONvry" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<p>在 Firefox 中，blockquote 会位于中间栏的位置，这也是可接受的。</p>
-<h1 id="创建具有响应式的多栏布局"><a href="#创建具有响应式的多栏布局" class="headerlink" title="创建具有响应式的多栏布局"></a>创建具有响应式的多栏布局</h1><p>现在，你已经迅速掌握了以上这几种新属性和它们的值，我们再来专注来做好响应式布局以促进用户体验。</p>
-<p>column-count 和 column-width 都有一些的问题。当在大屏设备中 column-count 保持在相应的栏数，但是在小屏设备上布局在会被打破。同样，如果 column-width 在小屏设备上栏虽然不会太窄，但在大屏设备上导致会有大量的栏出现。</p>
-<p>为了确保您的布局在大小屏幕上都能较好的适应，你应该同时指定 column-count 和 column-width 参数。这样你就能控制好栏的宽度和数量。还有一些小问题，我们下一步继续来解决。</p>
-<h2 id="固定水平滚动"><a href="#固定水平滚动" class="headerlink" title="固定水平滚动"></a>固定水平滚动</h2><p>如果您指定一个固定高度的栏，如果使得窗口较窄则会出现一个水平滚动条。由于内容不能垂直展开，就会水平地增长。为了解决这个问题，你可以调整你的浏览器的宽度时，水平滚动条首先出现。然后，使用媒介查询属性在对该栏的高度设置一个 auto 的属性值。下面是代码：</p>
-<pre><code>.responsive-height {
-height: 250px;
-}
-@media (max-width: 1040px) {
-.responsive-height {
-height: auto;
-}
-} 
-</code></pre><p><a href="http://codepen.io/SitePoint/pen/vGOdwj" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<p>调整窗口的大小，看看这两个例子是怎么响应的。</p>
-<h2 id="固定很长的栏"><a href="#固定很长的栏" class="headerlink" title="固定很长的栏"></a>固定很长的栏</h2><p>如果你的栏太长，用户需要向上和向下滚动才能阅​​读所有内容，这太麻烦了。当栏的高度比窗口高度还大，不用多栏是一个好方法。这可以再次使用媒介查询属性来解决：</p>
-<pre><code>@media (min-width: 800px) {
-.long-columns {
-columns: 3 200px;
-}
-}
-</code></pre><p>在只有宽度足够的情况下，才会有多栏，用户再也不用上下滚动。</p>
-<p><a href="http://codepen.io/SitePoint/pen/reVJEL" target="_blank" rel="external">可以到 CodePen 看一下上述的 Demo。</a></p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>我希望这篇 CSS 中多栏布局模块的介绍能让你熟悉这个功能。这个属性可以提高你的响应式设计能力，如果你仍然想要兼容旧的浏览器，多栏还是会变成单个栏的。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/19/译文：CSS 多栏布局新手教程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -820,28 +676,16 @@ columns: 3 200px;
 
       
         
-          
-            <blockquote>
-<p>原文：<br><a href="http://www.sitepoint.com/quick-tip-fixing-font-weight-problem-hover-states/" target="_blank" rel="external">Quick Tip: Fixing the font-weight Problem on Hover States</a></p>
+          <blockquote>
+<p>原文：<br><a href="http://www.sitepoint.com/quick-tip-fixing-font-weight-problem-hover-states/">Quick Tip: Fixing the font-weight Problem on Hover States</a></p>
 </blockquote>
 <p>你有没有试过改变链接状态的 font-weight 属性的值？ 如果有，你可能已经注意到文字移位了。<br>在这次的 Quick Tip 中，我们会先了解是什么原因导致的，然后我们来学习两种解决的办法。</p>
 <h2 id="探讨问题"><a href="#探讨问题" class="headerlink" title="探讨问题"></a>探讨问题</h2><p>首先，让我们通过一个简单的例子来探讨这个问题。<br>如图所示：<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates01.png" alt="链接状态-鼠标未悬停上"></p>
-<p>对这些链接，你在CSS里可能是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a:hover &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>因为我们通常不会为这些链接设置一个固定的宽度，当用户把鼠标悬停在链接上时文字移位了。 这是因为这时候链接上的字母变粗了。我们来试试看给第一个链接定义一个 active 类，并添加如下CSS代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.active &#123;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后，我们把第二个链接的文字改成和第一个链接上的文字一样，都是”First Item”：<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/linkstates02.png" alt="链接状态-鼠标悬停上"></p>
-<p>打开浏览器，我们会发现那两个 “First Item” 链接的宽度是不同的。</p>
-<p>你可以看看我们在 CodePen 上的 DEMO 演示：<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/test.gif" alt="测试链接状态悬停的GIF动画"></p>
-<p>显然，这种粗体效果既不常见也不美观。因此，我们有两种解决方法来改善它。</p>
-<h2 id="方法1：给所有项目设置宽度"><a href="#方法1：给所有项目设置宽度" class="headerlink" title="方法1：给所有项目设置宽度"></a>方法1：给所有项目设置宽度</h2><p>正如前面提到的，最常见的做法是给这些列表项设置一个宽度。在这个例子里，我们把每个列表项的宽度设置为24%。</p>
-<p>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">li &#123;</span><br><span class="line">  list-style-type: none;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 24%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/test2.gif" alt="方法1的GIF动画"><br>尽管这是一个可行的方法，然而并不理想，因为有些时候我们是要避免给元素增加固定的宽度值。所以下面会有个更好的解决方法。</p>
-<h2 id="方法2：文字阴影"><a href="#方法2：文字阴影" class="headerlink" title="方法2：文字阴影"></a>方法2：文字阴影</h2><p>通过利用 text-shadow 属性的优势，我们可以模拟 font-weight 的特性，并根据需要，改变 blur-radius 的值来调整文字阴影。</p>
-<p>根据在上述例子中使用的字体，我们可以结合 text-shadow 的属性和 letter-spacing 属性来创造出不错的文字效果。</p>
-<p>因此，我们来给这些链接添加这样的CSS代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">  letter-spacing: .1em;  transition: text-shadow .3s;</span><br><span class="line">&#125;</span><br><span class="line">a:hover &#123;</span><br><span class="line">  text-shadow: 0 0 .65px #333, 0 0 .65px #333;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>测试一下吧！<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/test3.gif" alt="方法2的GIF动画"><br>看，我们不需要给任何元素添加固定的宽度值就成功地避免了链接移动问题。并且文字大小也没变，这明显比使用 font-weight 属性的方法更好，更简洁美观。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>如果我们再碰到这样的问题，上述两种解决方法中的任何一个都是可行的。如果你知道的别的高招，请留言给我。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/18/译文：解决 hover 状态下加粗字体移位问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
