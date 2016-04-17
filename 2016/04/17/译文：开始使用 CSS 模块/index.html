@@ -1,0 +1,1031 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS,JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="原文：Getting Started with CSS Modules
+
+没有一个单一的方法，只用 CSS 模块就能使得 JavaScript 模板，CSS 文件或编译器工作。在这篇 CSS 模块系列文章的第二篇中，我们将学习一个方法。本文章的目的旨在建立一个 CSS 模块的项目并使之成功启动和运行。
+
+系列文章
+第 1 部分：何为 CSS 模块？它又有何用？（中文翻译版点此）
+第 2 部分：如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="译文：开始使用CSS模块">
+<meta property="og:url" content="http://rockzhou8.github.io/2016/04/17/译文：开始使用 CSS 模块/index.html">
+<meta property="og:site_name" content="RockZhou's Blog">
+<meta property="og:description" content="原文：Getting Started with CSS Modules
+
+没有一个单一的方法，只用 CSS 模块就能使得 JavaScript 模板，CSS 文件或编译器工作。在这篇 CSS 模块系列文章的第二篇中，我们将学习一个方法。本文章的目的旨在建立一个 CSS 模块的项目并使之成功启动和运行。
+
+系列文章
+第 1 部分：何为 CSS 模块？它又有何用？（中文翻译版点此）
+第 2 部分：如">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules1.png">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules2.png">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules3.png">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules4.png">
+<meta property="og:updated_time" content="2016-04-17T08:15:04.564Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="译文：开始使用CSS模块">
+<meta name="twitter:description" content="原文：Getting Started with CSS Modules
+
+没有一个单一的方法，只用 CSS 模块就能使得 JavaScript 模板，CSS 文件或编译器工作。在这篇 CSS 模块系列文章的第二篇中，我们将学习一个方法。本文章的目的旨在建立一个 CSS 模块的项目并使之成功启动和运行。
+
+系列文章
+第 1 部分：何为 CSS 模块？它又有何用？（中文翻译版点此）
+第 2 部分：如">
+<meta name="twitter:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 译文：开始使用CSS模块 | RockZhou's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3dae29cc8f4c5909bbf9e82dade42012";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">RockZhou's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">炫蓝的部落格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                译文：开始使用CSS模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-17T16:06:41+08:00" content="2016-04-17">
+              2016-04-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/个人译文/" itemprop="url" rel="index">
+                    <span itemprop="name">个人译文</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/17/译文：开始使用 CSS 模块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/17/译文：开始使用 CSS 模块/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文：<br><a href="https://css-tricks.com/css-modules-part-2-getting-started/" target="_blank" rel="external">Getting Started with CSS Modules</a></p>
+</blockquote>
+<p>没有一个单一的方法，只用 CSS 模块就能使得 JavaScript 模板，CSS 文件或编译器工作。在这篇 CSS 模块系列文章的第二篇中，我们将学习一个方法。本文章的目的旨在建立一个 CSS 模块的项目并使之成功启动和运行。</p>
+<blockquote>
+<p>系列文章</p>
+<p>第 1 部分：<a href="https://css-tricks.com/css-modules-part-1-need/" target="_blank" rel="external">何为 CSS 模块？它又有何用？</a>（<a href="http://rockzhou8.github.io/2016/04/10/%E8%AF%91%E6%96%87%EF%BC%9A%E4%BD%95%E4%B8%BA-CSS-%E6%A8%A1%E5%9D%97%EF%BC%8C%E5%AE%83%E5%8F%88%E6%9C%89%E4%BD%95%E7%94%A8%EF%BC%9F/">中文翻译版点此</a>）</p>
+<p>第 2 部分：如何开始使用 CSS 模块（就是现在这篇！）</p>
+<p>第 3 部分：React + CSS 模块=😍（即将推出！）</p>
+</blockquote>
+<p>在我工作的项目，有个 CSS 不依赖客户端 JavaScript 就能生效的要求，因此编译器需要在 HTML 和 CSS 部署之前就把一切都运作好。我们将使用 Webpack，一种编译系统或模块打捆器。在接下来的文章中我们将重点放在使下面静态的 HTML 代码呈现到浏览器的这么一个真实的例子。</p>
+<p>现在开始！</p>
+<h1 id="安装-WebPack"><a href="#安装-WebPack" class="headerlink" title="安装 WebPack"></a>安装 WebPack</h1><p>在<a href="https://docs.npmjs.com/getting-started/installing-node" target="_blank" rel="external">安装完 NPM 和 Node.js</a> 之后，新建一个空目录，并运行以下命令：</p>
+<pre><code>npm init --y
+</code></pre><p>这会生成一个<code>package.json</code>文件，并自动填入一些默认设置。这是一个附件清单——当人们下载和用<code>npm install</code>命令安装这个项目的时候，需要有哪些文件的说明。</p>
+<p><a href="https://webpack.github.io/" target="_blank" rel="external">Webpack</a>会管理这个编译过程。它会密切关注我们的 CSS，JavaScript 和 HTML 互相执行的所有关联。但 Webpack 到底是什么呢？Maxime Fabre 认为它是一种编译系统或模块打捆器：</p>
+<blockquote>
+<p>是的，它将两者结合了。Webpack 不生成资源，认为资源是模块本身，然后分别打捆进模块中。它可以被导入、修改、操作并且最后可以打包进最终的的包。<br><a id="more"></a><br>如果这听起来不可思议，别担心。想一下 Sass 和 Glup 还有 npm 都还陌生和困难吗？我们会搞定的。</p>
+</blockquote>
+<p>首先确保 Webpack “捆绑”模块正常并定义一个依赖的 JavaScript 文件，它可以导入代码。我们需要在全局下安装 Webpack，在终端中输入命令：</p>
+<pre><code>npm install webpack -g
+</code></pre><p>完成后，我们在我们本地项目中启用 Webpack，代码如下：</p>
+<pre><code>npm i -D webpack
+</code></pre><p>我们在<code>/src</code>目录下生成一个<code>index.js</code>文件。通常我喜欢给静态资源建立文件夹（比如图像、字体、CSS 文件和标记）。我写的代码在<code>/src</code>目录下，机器自动生成的在<code>/build</code>下。我的想法是删除<code>/build</code>目录也是可以的，并不会有任何问题，因为我们可以运行一个命令只处理<code>/src</code>目录里的东西，并重建<code>/build</code>目录。</p>
+<p>在<code>/src</code>目录里，我们可以新建一个空<code>alert.js</code>文件（下面一会儿还会提到）。我们还需要在根目录新建一个<code>webpack.config.js</code>文件，<code>/src</code>目录应该是这样构成的：</p>
+<pre><code>package.json
+webpack.config.js
+/node_modules
+/src
+  index.js
+  alert.js
+</code></pre><p>在<code>webpack.config.js</code>（Webpack 的设置文件）文件中，我们添加如下代码：</p>
+<pre><code>module.exports = {
+  entry: &apos;./src&apos;,
+  output: {
+    path: &apos;build&apos;,
+    filename: &apos;bundle.js&apos;,
+  },
+};
+</code></pre><p>当我们在这运行<code>webpack</code>命令时，Webpack 将<code>/src</code>中所有的资源文件建立一个文件关系树。</p>
+<p>回到<code>src/index.js</code>文件，我们可以添加代码：</p>
+<pre><code>require(&quot;./alert.js&quot;);
+</code></pre><p>在<code>alert.js</code>文件里，我们可以这样写：</p>
+<pre><code>alert(&quot;LOUD NOISES&quot;);
+</code></pre><p>然后我们在根目录下建一个<code>index.html</code>文件，并在<code>&lt;body&gt;</code>闭合前添加<code>&lt;script&gt;</code>标签并添加打捆脚本：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document name&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;CSS Modules demo&lt;/h1&gt;
+
+    &lt;script src=&quot;build/bundle.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>Webpack 会生成<code>bundle.js</code>文件，使用<code>webpack</code>命令即可。为了更便于使用，我们可以更新<code>package.json</code>。下面是文件中代码：</p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;test&quot;: &quot;echo &apos;Error: no test specified&apos; &amp;&amp; exit 1&quot;
+},
+</code></pre><p>这是<code>npm</code>给的默认代码，我们可以用下面的代码替换掉它，它可以执行 Webpack 命令并打开一个浏览器窗口：</p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;webpack &amp;&amp; open index.html&quot;
+},
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules1.png" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules1.png"></p>
+<p>快看，有效果了！这证明了我们的<code>index.js</code>文件导入了<code>alert.js</code>的代码，Webpack 正确地捆绑了一切。如果我们现在删除<code>alert.js</code>文件，我们再次运行<code>npm start</code>的时候会报错：</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules2.png" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules2.png"></p>
+<h1 id="添加第一个加载器"><a href="#添加第一个加载器" class="headerlink" title="添加第一个加载器"></a>添加第一个加载器</h1><p>在 Webpack 中加载程序是非常重要的。Maxime Fabre 在<a href="http://blog.madewithlove.be/post/webpack-your-bags/" target="_blank" rel="external">这篇文章</a>里就提到过：</p>
+<blockquote>
+<p>加载器是个小插件，基本上是：“当你遇到这种文件时，就执行它”。</p>
+</blockquote>
+<p>在 Maxime 的教程他提到了 <a href="https://babeljs.io/" target="_blank" rel="external">Babel</a> 加载器，这是一个好的开始，Babel 允许我们使用 ES2015 和 JavaScript 语言的最新改进。所以不需要<code>Common.js</code>函数的话需要提前<code>require</code>另一个模块，现在我们可以用<code>import</code>代替了。用 Babel 我们可以用类、方向函数等这些<a href="https://css-tricks.com/lets-learn-es2015/" target="_blank" rel="external">很酷的功能</a>：</p>
+<blockquote>
+<p>像 Babel 这样的工具可以让我们能够编写新的 ES2015 的代码，并执行一项称为 transpiling 的任务(类似预处理)用以把代码转换到以前版本的 JavaScript 中以提高浏览器兼容性。这个类似于 Sass，Sass 语法中编写的代码，通过预处理器编译成标准的 CSS。</p>
+</blockquote>
+<p>如果想要运行 Babel 的话，我们需要安装 Webpack Babel 加载器：</p>
+<pre><code>npm i -D babel-loader babel-core babel-preset-es2015
+</code></pre><p>在项目的根目录中的<code>.babelrc</code>文件里，我们可以配置默认值用以让别人知道用什么 JavaScript 语法：</p>
+<pre><code>{ &quot;presets&quot;: [&quot;es2015&quot;] }
+</code></pre><p>我们希望只运行我们自己写的<code>.js</code>文件，我们之后安装生成的文件有自己的语法，我们不希望该代码受影响。这就要靠 Webpac 加载器来发挥作用。我们可以打开<code>webpack.config.js</code>文件，并改写成代码：</p>
+<pre><code>module.exports = {
+  entry:  &apos;./src&apos;,
+  output: {
+  path: &apos;build&apos;,
+    filename: &apos;bundle.js&apos;,    
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js/,
+        loader: &apos;babel&apos;,
+        include: __dirname + &apos;/src&apos;,
+       }
+    ],
+  }
+};
+</code></pre><p><code>loders</code>下面的<code>test</code>键值对告诉 Webpack 哪种类型的文件需要执行，<code>include</code> 准确地告诉了需要执行操作的项目路径。</p>
+<p>让我们来测试一下 Babel 与 Webpack 的协同工作。在一个新的文件（<code>src/robot.js</code>），这样写：</p>
+<pre><code>const greetings = (text, person) =&gt; {
+  return `${text}, ${person}. I read you but I’m sorry, I’m afraid I can’t do that.`;
+}
+
+export default greetings;
+</code></pre><p>这个 JavaScript 文件是用了一些 ES2015 的特殊功能，比如 <code>export</code>，<code>const</code>和<code>let</code>，还有箭头功能和模板文字。</p>
+<p>我们可以这样导入模块到<code>src/index.js</code>文件中：</p>
+<pre><code>import greetings from &apos;./robot.js&apos;
+document.write(greetings(&quot;Affirmative&quot;, &quot;Dave&quot;));
+</code></pre><p>最后，我们需要做的就是再次运行<code>npm start</code>，浏览器应该弹出返回文字：</p>
+<blockquote>
+<p>“Affirmative, Dave. I read you but I’m sorry, I’m afraid I can’t do that.”</p>
+</blockquote>
+<p>很显然，Babel 生效了。</p>
+<p>这不是一个 CSS 模块然而很接近了。在我们继续下一步之前，先删除<code>src/robot.js</code>和<code>src/index.js</code>里的所有代码。</p>
+<h1 id="载入样式表"><a href="#载入样式表" class="headerlink" title="载入样式表"></a>载入样式表</h1><p>现在，我们需要让所有模板几乎都能有效，我们需要增加两个加载器：<a href="https://github.com/webpack/style-loader" target="_blank" rel="external">css-loader</a>和<a href="https://github.com/webpack/style-loader" target="_blank" rel="external">style-loader</a>，我们先安装：</p>
+<pre><code>npm i -D css-loader style-loader
+</code></pre><p>css-loader 程序需要一个 CSS 文件并读取其所有关联项，而 style-loader 将这些样式直接嵌入到标记中。让我们在<code>src/app.css</code>中编写一些 CSS 测试一下：</p>
+<pre><code>.element {
+  background-color: blue;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+}
+</code></pre><p>我们可以<code>import</code>样式表到<code>src/index.js</code>文件中：<br>import styles from ‘./app.css’</p>
+<pre><code>let element = `
+  &lt;div class=&quot;element&quot;&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur laudantium recusandae itaque libero velit minus ex reiciendis veniam. Eligendi modi sint delectus beatae nemo provident ratione maiores, voluptatibus a tempore!&lt;/p&gt;
+  &lt;/div&gt;
+`
+
+document.write(element);
+</code></pre><p>哇哦！我们只是使样式表成为一个 JavaScript 文件的关联项吗？是的，我们做到了。但在此之前的正常生效之前，我们需要再次重新配置<code>webpack.config.js</code>：</p>
+<pre><code>module.exports = {
+  entry:  &apos;./src&apos;,
+  output: {
+    path: &apos;build&apos;,
+      filename: &apos;bundle.js&apos;,
+    },
+  module: {
+    loaders: [
+      {
+        test: /\.js/,
+    loader: &apos;babel&apos;,
+    include: __dirname + &apos;/src&apos;,
+  },
+  {
+    test: /\.css/,
+    loaders: [&apos;style&apos;, &apos;css&apos;],
+    include: __dirname + &apos;/src&apos;
+      }
+    ],
+  }
+};
+</code></pre><p>运行<code>npm start</code>之后就会变成这样：</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules3.png" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules3.png"></p>
+<p>因此，如果我们对我们的文档“检查元素”，我们会发现 style-loader 已经把该文件插入进<code>&lt;style&gt;</code>标记里的<code>&lt;head&gt;</code>之中：</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules4.png" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-4-17/cssmodules4.png"></p>
+<p>我们总结一下刚才发生了什么。我们生成了一个 JavaScript 文件，它请求另一个 CSS 文件，然后把代码嵌入在网页里。举一个更实际点的例子，我们创建一个<code>buttons.js</code>文件，并和<code>buttons.css</code>关联起来，然后导入 JavaScript 到另一个文件，再组织模板和生成一些 HTML 文件。这使我们的代码模块化，易于阅读。</p>
+<p>就个人而言，为了保持代码清爽，我宁愿用单独的 CSS 文件，而不是将所有的代码写在一起。要这么做的话，我们需要使用<a href="https://webpack.github.io/docs/using-plugins.html" target="_blank" rel="external">Webpack插件</a>——<a href="https://github.com/webpack/extract-text-webpack-plugin" target="_blank" rel="external">extract text</a>：</p>
+<blockquote>
+<p>把每个进入块的请求（<code>style.css</code>）输出到一个单独的 CSS 文件。因此，样式表不再联到的 JavaScript，而是在单独的 CSS 包文件（<code>styles.css</code>）中。如果你的总样式表很大，样式表会并行加载到 JavaScript 中，因此会让这变得快一些。</p>
+</blockquote>
+<p>我们必须通过 NPM 安装插件 ：</p>
+<pre><code>npm i -D extract-text-webpack-plugin
+</code></pre><p>我们再次通过请求更新<code>webpack.config.js</code>文件，并加载 CSS 到其中：</p>
+<pre><code>e.exports = {
+  entry:  &apos;./src&apos;,
+  output: {
+    path: &apos;build&apos;,
+    filename: &apos;bundle.js&apos;,
+  },
+  module: {
+loaders: [
+  {
+    test: /\.js/,
+    loader: &apos;babel&apos;,
+    include: __dirname + &apos;/src&apos;,
+  },
+  {
+    test: /\.css/,
+    loader: ExtractTextPlugin.extract(&quot;css&quot;)
+  }
+],
+  },
+  plugins: [
+new ExtractTextPlugin(&quot;styles.css&quot;)
+</code></pre><p>Extract Text 插件为我们生成了一个<code>styles.css</code>文件!</p>
+<p>你可能已经注意到我们已经完全摆脱了 style-loader，因为我们再也不用把样式注入到标记中了。所以如果我们打开<code>/build</code>目录，会发现里面生成了一个已经写好代码的<code>styles.css</code>文件。通过<code>index.html</code>文件，我们把样式加入到<code>&lt;head&gt;</code>标签里：</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;build/styles.css&quot;&gt;
+</code></pre><p>再次运行<code>npm start</code>，看！我们的样式代码神奇地出现在页面上原本就属于他们的地方。</p>
+<p>现在，在有 CSS 和 HTML 的页面上，我们如何操纵类名，以获得本地作用域的优点呢？我们要做的就是像这样更新 <code>webpack.config.js</code>文件：</p>
+<pre><code>/\.css/,
+  loader: ExtractTextPlugin.extract(&apos;css?modules&amp;importLoaders=1&amp;localIdentName=[name]__[local]___[hash:base64:5]&apos;),
+</code></pre><p>这会在该类文件名的末尾生成一些奇怪的文本。这是 CSS 模块的哈希值，通过 Webpack 中 CSS 加载器来给类添加的。<br>下面，我们通过<code>styles.element</code>类来更新<code>index.js</code>文件：</p>
+<pre><code> styles from &apos;./app.css&apos;
+let element = `
+  &lt;div class=&quot;${styles.element}&quot;&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur laudantium recusandae itaque libero velit minus ex reiciendis veniam. Eligendi modi sint delectus beatae nemo provident ratione maiores, voluptatibus a tempore!&lt;/p&gt;
+  &lt;/div&gt;
+`
+document.write(element);
+</code></pre><p>看看发生了什么，再次运行<code>npm start</code>之后，我们的代码经过 Webpack 处理，让本地域不再是一个难题。因为类已经像这样地注入到网页之中了：</p>
+<pre><code>&lt;div class=&quot;app__element___1MmQg&quot;&gt;
+</code></pre><p>我们还没有真正完成，因为有许多问题没有答案。我们怎么能更进步地写代码？我们如何避免在网页的标记中写那麻烦的 <code>document.write</code> 语句？我们应如何组织我们的模块和文件？现在 CSS 模块我们只用到一半，下面我们要考虑如何从另外的系统导入代码库。</p>
+<p>在接下来的教程中，我们会看到 React 是如何帮助我们生成整洁的小模块，也会学习到如何在很多模板里生成静态标签，以及如何给我们的项目添加 Sass 和 PostCSS 这样的其他功能。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/10/译文：何为-CSS-模块，它又有何用？/" rel="next" title="何为-CSS-模块，它又有何用？">
+                <i class="fa fa-chevron-left"></i> 何为-CSS-模块，它又有何用？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/17/译文：开始使用 CSS 模块/"
+     data-title="译文：开始使用CSS模块"
+     data-content=""
+     data-url="http://rockzhou8.github.io/2016/04/17/译文：开始使用 CSS 模块/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/17/译文：开始使用 CSS 模块/"
+           data-title="译文：开始使用CSS模块" data-url="http://rockzhou8.github.io/2016/04/17/译文：开始使用 CSS 模块/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Rock Zhou" />
+          <p class="site-author-name" itemprop="name">Rock Zhou</p>
+          <p class="site-description motion-element" itemprop="description">Attitude is Everything.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rockzhou8" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/rockzhou8" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/rock.zhou" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-WebPack"><span class="nav-number">1.</span> <span class="nav-text">安装 WebPack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加第一个加载器"><span class="nav-number">2.</span> <span class="nav-text">添加第一个加载器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#载入样式表"><span class="nav-number">3.</span> <span class="nav-text">载入样式表</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rock Zhou</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockzhou8"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
