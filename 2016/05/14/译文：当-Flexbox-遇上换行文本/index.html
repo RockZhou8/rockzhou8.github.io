@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HEXO,BLOG," />
+  <meta name="keywords" content="CSS," />
 
 
 
@@ -57,41 +57,37 @@
 
 
 
-<meta name="description" content="最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：
+<meta name="description" content="原文：Flexbox and Truncated Text
 
-叶阳栩宁的教程
-Zipperary 的教程
-IIssNan 的 NexT 主题
 
-虽然有现成的教程，但是在搭博客的时候还是走了点弯路，碰到些奇奇怪怪的问题，好在有 Google 大法，解决了不少问题。
-博客搭建完之后，只有一篇自动生成的 Hello World，于是我把最近个人翻译">
+当你遇到这样的情况：在一个 flex 子元素中有一个单行文本，你不想让文本自动换行，用省略号断行(或者隐藏其余的部分)。但意想不到的是，布局截断了并强制整个 flex 父元素变宽。利用 flexbox 可以让布局变得更容易！
+有一种标准的解决方案，只需要使用 non-flexbox属性值就可以完成。
+我们想要的效果是这样的
+这个动画">
 <meta property="og:type" content="article">
-<meta property="og:title" content="给 HEXO 博客自定义背景图">
-<meta property="og:url" content="http://rockzhou8.github.io/2016/03/22/给-HEXO-博客自定义背景图/index.html">
+<meta property="og:title" content="译文：当 Flexbox 遇上换行文本">
+<meta property="og:url" content="http://rockzhou8.github.io/2016/05/14/译文：当-Flexbox-遇上换行文本/index.html">
 <meta property="og:site_name" content="RockZhou's Blog">
-<meta property="og:description" content="最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：
+<meta property="og:description" content="原文：Flexbox and Truncated Text
 
-叶阳栩宁的教程
-Zipperary 的教程
-IIssNan 的 NexT 主题
 
-虽然有现成的教程，但是在搭博客的时候还是走了点弯路，碰到些奇奇怪怪的问题，好在有 Google 大法，解决了不少问题。
-博客搭建完之后，只有一篇自动生成的 Hello World，于是我把最近个人翻译">
-<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/blog.jpg">
-<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom2.jpg">
-<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg">
-<meta property="og:updated_time" content="2016-04-05T08:52:25.696Z">
+当你遇到这样的情况：在一个 flex 子元素中有一个单行文本，你不想让文本自动换行，用省略号断行(或者隐藏其余的部分)。但意想不到的是，布局截断了并强制整个 flex 父元素变宽。利用 flexbox 可以让布局变得更容易！
+有一种标准的解决方案，只需要使用 non-flexbox属性值就可以完成。
+我们想要的效果是这样的
+这个动画">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-15want.gif">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-15busted.gif">
+<meta property="og:updated_time" content="2016-05-22T14:42:08.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="给 HEXO 博客自定义背景图">
-<meta name="twitter:description" content="最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：
+<meta name="twitter:title" content="译文：当 Flexbox 遇上换行文本">
+<meta name="twitter:description" content="原文：Flexbox and Truncated Text
 
-叶阳栩宁的教程
-Zipperary 的教程
-IIssNan 的 NexT 主题
 
-虽然有现成的教程，但是在搭博客的时候还是走了点弯路，碰到些奇奇怪怪的问题，好在有 Google 大法，解决了不少问题。
-博客搭建完之后，只有一篇自动生成的 Hello World，于是我把最近个人翻译">
-<meta name="twitter:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/blog.jpg">
+当你遇到这样的情况：在一个 flex 子元素中有一个单行文本，你不想让文本自动换行，用省略号断行(或者隐藏其余的部分)。但意想不到的是，布局截断了并强制整个 flex 父元素变宽。利用 flexbox 可以让布局变得更容易！
+有一种标准的解决方案，只需要使用 non-flexbox属性值就可以完成。
+我们想要的效果是这样的
+这个动画">
+<meta name="twitter:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-15want.gif">
 
 
 
@@ -109,7 +105,7 @@ IIssNan 的 NexT 主题
   };
 </script>
 
-  <title> 给 HEXO 博客自定义背景图 | RockZhou's Blog </title>
+  <title> 译文：当 Flexbox 遇上换行文本 | RockZhou's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +255,7 @@ IIssNan 的 NexT 主题
             
             
               
-                给 HEXO 博客自定义背景图
+                译文：当 Flexbox 遇上换行文本
               
             
           </h1>
@@ -271,8 +267,8 @@ IIssNan 的 NexT 主题
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-22T15:29:32+08:00" content="2016-03-22">
-              2016-03-22
+            <time itemprop="dateCreated" datetime="2016-05-14T22:35:43+08:00" content="2016-05-14">
+              2016-05-14
             </time>
           </span>
 
@@ -285,8 +281,8 @@ IIssNan 的 NexT 主题
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/个人笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">个人笔记</span>
+                  <a href="/categories/个人译文/" itemprop="url" rel="index">
+                    <span itemprop="name">个人译文</span>
                   </a>
                 </span>
 
@@ -301,8 +297,8 @@ IIssNan 的 NexT 主题
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/22/给-HEXO-博客自定义背景图/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/22/给-HEXO-博客自定义背景图/" itemprop="commentsCount"></span>
+                <a href="/2016/05/14/译文：当-Flexbox-遇上换行文本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/14/译文：当-Flexbox-遇上换行文本/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -324,50 +320,59 @@ IIssNan 的 NexT 主题
       
 
       
-        <p>最近我在 github 上搭建了个 Hexo 博客，安装步骤就不再多说了，基本都是按照网上的教程来的，在此要感谢：</p>
-<ul>
-<li><a href="http://iread.io/tags/Hexo/" target="_blank" rel="external">叶阳栩宁的教程</a></li>
-<li><a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">Zipperary 的教程</a></li>
-<li><a href="http://theme-next.iissnan.com/" target="_blank" rel="external">IIssNan 的 NexT 主题</a></li>
-</ul>
-<p>虽然有现成的教程，但是在搭博客的时候还是走了点弯路，碰到些奇奇怪怪的问题，好在有 Google 大法，解决了不少问题。</p>
-<p>博客搭建完之后，只有一篇自动生成的 Hello World，于是我把最近个人翻译的两篇关于 CSS 的文章也发了上来，于是博客便有了点自己的东西了：<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/blog.jpg" alt="我的blog首页"></p>
-<p>NexT 主题有三种样式，都是这种白底黑字很淡雅的，但是我看着白色的背景挺单调的，就想着如何用刚学的 CSS 来给我的博客添加背景图片，略微“美化”一下。</p>
-<a id="more"></a>
-<p>在 NexT 主题的 github 的 issues 里，我找到了如何自定义一些页面样式的方法，作者 IISSNan 很贴心的在主题的 “\source\css_custom\” 文件夹下放了一个 custom.styl 文件，可以让用户自己在里面写 CSS 代码以个性化自己的博客。<br>于是我找到这个文件，并找到一张去年在三亚拍的大海照片用作背景，开始编写代码了！<br>首先我尝试输入了如下的 CSS 代码，主要是来测试一下这个 custom.styl 是否真的有效：</p>
-<pre><code>body{
-background-image:url(/images/background.jpg);
-}
-</code></pre><p>保存之后，刷新一下本地博客的网页（毕竟还没有 deploy 部署上传），看来我已经成功地给博客加上背景图片了，显然这离美观还差好大一截呢，文章比较长的时候，图片就又重复了一张出来，如图：<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom2.jpg" alt="背景图会重复出现"></p>
-<p>因此，我想做到：</p>
-<ol>
-<li>图片平铺在页面上</li>
-<li>平铺之后不会因为往下滚动图片就会消失</li>
-</ol>
-<p>于是添加定义 background-repeat 和 background-attachment 属性的代码：</p>
-<pre><code>body{
-background-image:url(/images/background.jpg);
-background-repeat: no-repeat;
-background-attachment:fixed;
-}
-</code></pre><p>但是又出现了新的问题，背景图只有左上角的一部分区域平铺到网页之中，其他的都看不到了，我的照片只看得到蓝天，看不到大海了，查看 <a href="http://www.w3school.com.cn/css/css_background.asp" target="_blank" rel="external">W3school</a> 发现使用 <code>background-position:50% 50%;</code> 代码可以解决！</p>
-<blockquote>
-<p>这会导致图像适当放置，其中心与其元素的中心对齐。换句话说，百分数值同时应用于元素和图像。也就是说，图像中描述为 50% 50% 的点（中心点）与元素中描述为 50% 50% 的点（中心点）对齐。</p>
+        <blockquote>
+<p>原文：<br><a href="https://css-tricks.com/flexbox-truncated-text/" target="_blank" rel="external">Flexbox and Truncated Text
+</a></p>
 </blockquote>
-<p>于是再次修改代码：</p>
-<pre><code>body{
-background-image:url(/images/background.jpg);
-background-repeat: no-repeat;
-background-attachment:fixed;
-background-position:50% 50%; 
+<p>当你遇到这样的情况：在一个 flex 子元素中有一个单行文本，你不想让文本自动换行，用省略号断行(或者隐藏其余的部分)。但意想不到的是，布局截断了并强制整个 flex 父元素变宽。利用 <code>flexbox</code> 可以让布局变得更容易！</p>
+<p>有一种标准的解决方案，只需要使用 <code>non-flexbox</code>属性值就可以完成。</p>
+<h1 id="我们想要的效果是这样的"><a href="#我们想要的效果是这样的" class="headerlink" title="我们想要的效果是这样的"></a>我们想要的效果是这样的</h1><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-15want.gif" alt="我们想要的"></p>
+<p>这个动画展示了一个变窄后的子元素。</p>
+<h1 id="你会遇到的问题是这样的"><a href="#你会遇到的问题是这样的" class="headerlink" title="你会遇到的问题是这样的"></a>你会遇到的问题是这样的</h1><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-15busted.gif" alt="你会遇到的"></p>
+<p>这个动画展示了没换行的文本阻止了变窄。<br><a id="more"></a></p>
+<h1 id="子元素的问题"><a href="#子元素的问题" class="headerlink" title="子元素的问题"></a>子元素的问题</h1><p>让人不解的是如果文本直接在 flex 子元素内，就会很好：<br>HTML 代码：</p>
+<pre><code>&lt;div class=&quot;flex-parent&quot;&gt;
+  &lt;div class=&quot;flex-child&quot;&gt;
+Text to truncate here.
+  &lt;/div&gt;
+  &lt;div class=&quot;flex-child&quot;&gt;
+Other stuff.
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>CSS 代码：</p>
+<pre><code>/* 文本直接在子元素中，在这里换行 */
+.flex-child
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-</code></pre><p>现在，背景图的设置就基本告一段落了。再浏览一下，当我向下滚动条到最底的时候，发现页脚最下方的版权文字是浅灰色的，在之前 NexT 主题默认的纯白的背景色上没问题，然而在我的背景图上就会不那么明显。<br><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg" alt="http://7xs50a.com1.z0.glb.clouddn.com/2016-3-22/custom3.jpg"></p>
-<p>于是我选择继续修改 CSS 代码，想个办法给这几个字改一下颜色吧。<br>通过 Chrome 浏览器自带的开发者工具，可以找到页脚所在的文字是在 footer 的类下面，通过右边修改 color 的颜色值可以所见即所得地调整出一个我想要的颜色。然后，我继续在 custom.styl 文件里添加如下的代码：</p>
-<pre><code>footer{
-color:#eee;
+</code></pre><p>当遇到子元素，就会出问题：</p>
+<p>HTML 代码：</p>
+<pre><code>&lt;div class=&quot;flex-parent&quot;&gt;
+  &lt;div class=&quot;flex-child&quot;&gt;
+&lt;h2&gt;Text to truncate here.&lt;/h2&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex-child&quot;&gt;
+Other stuff.
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>CSS 代码：</p>
+<pre><code>/* 标题文本的时候，可以截断文本 */
+.flex-child &gt; h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-</code></pre><p>刷新之后，再次发现字体颜色已经变成我想要的颜色了。</p>
-<p><a href="http://rockzhou8.github.io/">我的博客</a>已经搭建完毕了，以后我会将学习的笔记和个人心得等放上来，也欢迎各位访问和交流。</p>
+</code></pre><h1 id="解决方案：在-flex-子元素上设置-min-width-0"><a href="#解决方案：在-flex-子元素上设置-min-width-0" class="headerlink" title="解决方案：在 flex 子元素上设置 min-width: 0"></a>解决方案：在 flex 子元素上设置 <code>min-width: 0</code></h1><p>或者把 <code>min-width</code> 改成其他具体数值。不这样的话包含其他文本元素的 flex 子元素就不会让这些文本元素的”隐含宽度”变窄了。</p>
+<p>当我第一次碰到这样的情况的时候，我在 <a href="http://codepen.io/aj-foster/pen/emBYPW" target="_blank" rel="external">AJ Foster</a> 那边找到了解决方法，他写道：</p>
+<p><em>根据一项<a href="http://dev.w3.org/csswg/css-flexbox/#min-size-auto" target="_blank" rel="external">规范草案</a>，上面文本不应该当 flex 容器减小时，完全折叠。因为子标题已经有了 100% 的宽度，<code>min-width: auto</code> 会计算 flexbox 会使得容器比我想的要大。</em></p>
+<p>我发现 Chrome、Opera 和 Firefox 都有这个特性。而 Safari 会收缩、截断，即使没有设置 <code>min-width</code>（可能是违背了规范）。</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>Codepen 上的 Demo 地址：<a href="http://codepen.io/chriscoyier/pen/zqedEr" target="_blank" rel="external">http://codepen.io/chriscoyier/pen/zqedEr</a></p>
+<ol>
+<li>生效的：文本框直接在 flex 子元素中；</li>
+<li>无效的：文本框在 <code>h2</code> 内的 flex 子元素中；</li>
+<li>生效的：文本框在 <code>h2</code>，但 flex 子元素设置了 <code>min-width</code>。</li>
+</ol>
 
       
     </div>
@@ -382,9 +387,7 @@ color:#eee;
       
         <div class="post-tags">
           
-            <a href="/tags/HEXO/" rel="tag">#HEXO</a>
-          
-            <a href="/tags/BLOG/" rel="tag">#BLOG</a>
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
           
         </div>
       
@@ -393,16 +396,16 @@ color:#eee;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/19/译文：CSS 多栏布局新手教程/" rel="next" title="译文：CSS多栏布局新手教程">
-                <i class="fa fa-chevron-left"></i> 译文：CSS多栏布局新手教程
+              <a href="/2016/05/02/译文：波形滚动效果的制作/" rel="next" title="译文：波形滚动效果的制作">
+                <i class="fa fa-chevron-left"></i> 译文：波形滚动效果的制作
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/03/译文：简洁明了的响应式表格/" rel="prev" title="译文：简洁明了的响应式表格">
-                译文：简洁明了的响应式表格 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/22/利用-myFocus-制作焦点图/" rel="prev" title="利用 myFocus 制作焦点图">
+                利用 myFocus 制作焦点图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -418,10 +421,10 @@ color:#eee;
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/22/给-HEXO-博客自定义背景图/"
-     data-title="给 HEXO 博客自定义背景图"
+        <div class="ds-share flat" data-thread-key="2016/05/14/译文：当-Flexbox-遇上换行文本/"
+     data-title="译文：当 Flexbox 遇上换行文本"
      data-content=""
-     data-url="http://rockzhou8.github.io/2016/03/22/给-HEXO-博客自定义背景图/">
+     data-url="http://rockzhou8.github.io/2016/05/14/译文：当-Flexbox-遇上换行文本/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -448,8 +451,8 @@ color:#eee;
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/22/给-HEXO-博客自定义背景图/"
-           data-title="给 HEXO 博客自定义背景图" data-url="http://rockzhou8.github.io/2016/03/22/给-HEXO-博客自定义背景图/">
+      <div class="ds-thread" data-thread-key="2016/05/14/译文：当-Flexbox-遇上换行文本/"
+           data-title="译文：当 Flexbox 遇上换行文本" data-url="http://rockzhou8.github.io/2016/05/14/译文：当-Flexbox-遇上换行文本/">
       </div>
     
   </div>
@@ -571,7 +574,7 @@ color:#eee;
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#我们想要的效果是这样的"><span class="nav-number">1.</span> <span class="nav-text">我们想要的效果是这样的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#你会遇到的问题是这样的"><span class="nav-number">2.</span> <span class="nav-text">你会遇到的问题是这样的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子元素的问题"><span class="nav-number">3.</span> <span class="nav-text">子元素的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案：在-flex-子元素上设置-min-width-0"><span class="nav-number">4.</span> <span class="nav-text">解决方案：在 flex 子元素上设置 min-width: 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Demo"><span class="nav-number">5.</span> <span class="nav-text">Demo</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

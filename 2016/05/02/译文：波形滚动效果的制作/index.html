@@ -1,0 +1,1154 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,CSS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="原文：Creating Wavescroll
+
+这篇文章的作者是 Nikolay Talanov。Nikolay 写的第一篇英文文章并展示了一个 demo。通过它可以让你更好的理解本文，并且你也可以在 CodePen 上关注该作者，他有很多不可思议的 demo。
+这篇文章我写的一个如何制作一种独特的波形块滚动效果的攻略：CodePen Demo
+这个 demo 的代码是非常简单，易于理解的（希望">
+<meta property="og:type" content="article">
+<meta property="og:title" content="译文：波形滚动效果的制作">
+<meta property="og:url" content="http://rockzhou8.github.io/2016/05/02/译文：波形滚动效果的制作/index.html">
+<meta property="og:site_name" content="RockZhou's Blog">
+<meta property="og:description" content="原文：Creating Wavescroll
+
+这篇文章的作者是 Nikolay Talanov。Nikolay 写的第一篇英文文章并展示了一个 demo。通过它可以让你更好的理解本文，并且你也可以在 CodePen 上关注该作者，他有很多不可思议的 demo。
+这篇文章我写的一个如何制作一种独特的波形块滚动效果的攻略：CodePen Demo
+这个 demo 的代码是非常简单，易于理解的（希望">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-2jetlag-photos.gif">
+<meta property="og:updated_time" content="2016-05-22T14:42:09.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="译文：波形滚动效果的制作">
+<meta name="twitter:description" content="原文：Creating Wavescroll
+
+这篇文章的作者是 Nikolay Talanov。Nikolay 写的第一篇英文文章并展示了一个 demo。通过它可以让你更好的理解本文，并且你也可以在 CodePen 上关注该作者，他有很多不可思议的 demo。
+这篇文章我写的一个如何制作一种独特的波形块滚动效果的攻略：CodePen Demo
+这个 demo 的代码是非常简单，易于理解的（希望">
+<meta name="twitter:image" content="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-2jetlag-photos.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 译文：波形滚动效果的制作 | RockZhou's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3dae29cc8f4c5909bbf9e82dade42012";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">RockZhou's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">炫蓝的部落格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                译文：波形滚动效果的制作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-02T22:35:12+08:00" content="2016-05-02">
+              2016-05-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/个人译文/" itemprop="url" rel="index">
+                    <span itemprop="name">个人译文</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/02/译文：波形滚动效果的制作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/02/译文：波形滚动效果的制作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文：<br><a href="https://css-tricks.com/creating-wavescroll/" target="_blank" rel="external">Creating Wavescroll</a></p>
+</blockquote>
+<p><strong>这篇文章的作者是 <a href="https://twitter.com/NikolayTalanov" target="_blank" rel="external">Nikolay Talanov</a>。Nikolay 写的第一篇英文文章并展示了一个 demo。通过它可以让你更好的理解本文，并且你也可以在 <a href="http://codepen.io/suez/" target="_blank" rel="external">CodePen</a> 上关注该作者，他有很多不可思议的 demo。</strong></p>
+<p>这篇文章我写的一个如何制作一种独特的波形块滚动效果的攻略：<br><a href="http://codepen.io/suez/pen/wMOVXz" target="_blank" rel="external">CodePen Demo</a></p>
+<p>这个 demo 的代码是非常简单，易于理解的（希望如此）。没有 NPM 模块或 ES2015 的东西，我只用了 jQuery，SCSS 和 HTML（外加一点的 GreenSock）。</p>
+<h1 id="我从-Twitter-上获取的灵感"><a href="#我从-Twitter-上获取的灵感" class="headerlink" title="我从 Twitter 上获取的灵感"></a>我从 Twitter 上获取的灵感</h1><p>有一天我在 Twitter 上看到一个 <a href="http://jetlag.photos/" target="_blank" rel="external">jetlag.photos</a> 的链接，这个效果很令人惊讶，于是我尝试不用它的源码，自己来重新实现这个效果。</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/2016-5-2jetlag-photos.gif" alt="jetlag.photos"><br><a id="more"></a></p>
+<h1 id="开始写-HTML"><a href="#开始写-HTML" class="headerlink" title="开始写 HTML"></a>开始写 HTML</h1><p>我们需要一个全屏幕大小的容器，内部的有每个小块。这里 <code>ws-</code> 是“wavescroll”的简写。</p>
+<pre><code>&lt;div class=&quot;ws-pages&quot;&gt;
+  &lt;div class=&quot;ws-bgs&quot;&gt;
+&lt;div class=&quot;ws-bg&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ws-bg&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ws-bg&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ws-bg&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ws-bg&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>我们再建一个额外的容器，因为后面我们需要一个写文字标题的地方。</p>
+<h1 id="用-Sass-写基本样式表"><a href="#用-Sass-写基本样式表" class="headerlink" title="用 Sass 写基本样式表"></a>用 Sass 写基本样式表</h1><p>这里我们使用 SCSS 语法，他会让我们的命名变得非常简单：</p>
+<pre><code>.ws {
+  &amp;-pages {
+overflow: hidden;
+position: relative;
+height: 100vh; // main container should be 100% height of the screen
+  }
+  &amp;-bgs {
+position: relative;
+height: 100%;
+  }
+  &amp;-bg {
+display: flex;
+height: 100%;
+background-size: cover;
+background-position: center center;
+  }
+}
+</code></pre><p>现在，我们需要创建背景切片。每个切片的“波浪”都在一个 <code>&lt;div&gt;</code> 中，我们的目标是使它们看起来像一个大的在中心的背景，利用 <code>background-size: cover</code> 来调整大小。</p>
+<p>每个切片将是屏幕宽度的 100％（不只是一个切片的可视宽度），并向左移动每个块。</p>
+<pre><code>.ws-bg {
+  &amp;__part {
+overflow: hidden; // every part must show content only within it&apos;s own dimensions
+position: relative;
+height: 100%;
+cursor: grab;
+user-select: none; // significantly improves mouse-drag experience, by preventing background-image drag event
+&amp;-inner {
+  position: absolute;
+  top: 0;
+  // `left` property will be assigned through JavaScript
+  width: 100vw; // each block takes 100% of screen width
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+    }
+  }
+}
+</code></pre><h1 id="用-JavaScript-实现背景切片"><a href="#用-JavaScript-实现背景切片" class="headerlink" title="用 JavaScript 实现背景切片"></a>用 JavaScript 实现背景切片</h1><p>我们可以利用 JavaScript 的 for 循环动态的创建切片。我在 SCSS 中做了循环并用 <code>::before</code> 元素减少 HTML，这样一来更容易，你并不需要同步 SASS 和 JS 的变量：</p>
+<pre><code>var $wsPages = $(&quot;.ws-pages&quot;);
+var bgParts = 24; // variable for amount of slices
+var $parts;
+
+function initBgs() {
+  var arr = [];
+  var partW = 100 / bgParts; // width of one slice in %
+
+  for (var i = 1; i &lt;= bgParts; i++) {
+var $part = $(&apos;&lt;div class=&quot;ws-bg__part&quot;&gt;&apos;); // a slice
+var $inner = $(&apos;&lt;div class=&quot;ws-bg__part-inner&quot;&gt;&apos;); // inner slice
+var innerLeft = 100 / bgParts * (1 - i); // calculating position of inner slice
+$inner.css(&quot;left&quot;, innerLeft + &quot;vw&quot;); // assigning `left` property for each inner slice with viewport units
+$part.append($inner);
+$part.addClass(&quot;ws-bg__part-&quot; + i).width(partW + &quot;%&quot;); // adding class with specific index for each slice and assigning width in %
+arr.push($part);
+  }
+
+  $(&quot;.ws-bg&quot;).append(arr); // append array of slices
+  $wsPages.addClass(&quot;s--ready&quot;); // we&apos;ll need this class later
+  $parts = $(&quot;.ws-bg__part&quot;); // new reference to all slices
+};
+
+initBgs();
+</code></pre><p>在这个函数的底部，我们添加 <code>s--ready</code> 类到容器中（<code>s</code> 代表静态，由 JavaScript 控制）。我们需要用它来从 <code>.ws-bg</code> 中删除静态的 <code>background-image</code>，这可以让用户马上就能看到效果。</p>
+<p>切片添加后，原来的容器背景就没有用了（甚至还有反作用，因为它们不会移动），因此让我们来解决这个问题：</p>
+<pre><code>.ws-bg {
+  .ws-pages.s--ready &amp; {
+background: none;
+  }
+}
+// Sass loop to set backgrounds
+.ws-bg {
+  @for $i from 1 through 5 {
+$img: url(../images/onepgscr-#{$i + 3}.jpg);
+&amp;:nth-child(#{$i}) {
+  background-image: $img;
+  .ws-bg__part-inner {
+    background-image: $img;
+      }
+    }
+  }
+}
+</code></pre><h1 id="控制鼠标滚动"><a href="#控制鼠标滚动" class="headerlink" title="控制鼠标滚动"></a>控制鼠标滚动</h1><p>在添加一个鼠标滚动程序，可以让界面改变。</p>
+<pre><code>  var curPage = 1;
+  var numOfPages = $(&quot;.ws-bg&quot;).length;
+
+  // save the window dimensions
+  var winW = $(window).width();
+  var winH = $(window).height();
+
+  // Not debouncing since setting variables is low cost.
+  $(window).on(&quot;resize&quot;, function() {
+winW = $(window).width();
+winH = $(window).height();
+  });
+
+  var startY = 0;
+  var deltaY = 0;
+
+  // Delegated mouse handler, since all the parts are appended dynamically
+  $(document).on(&quot;mousedown&quot;, &quot;.ws-bg__part&quot;, function(e) { 
+startY = e.pageY; // Y position of mouse at the beginning of the swipe
+deltaY = 0; // reset variable on every swipe
+
+$(document).on(&quot;mousemove&quot;, mousemoveHandler); // attaching mousemove swipe handler
+
+$(document).on(&quot;mouseup&quot;, swipeEndHandler); // and one for swipe end
+  });
+
+  var mousemoveHandler = function(e) {
+var y = e.pageY; // Y mouse position during the swipe
+
+// with the help of the X mouse coordinate, we are getting current active slice index (the slice the mouse is currently over)
+var x = e.pageX;
+index = Math.ceil(x / winW * bgParts);
+
+deltaY = y - startY; // calculating difference between current and starting positions
+moveParts(deltaY, index); // moving parts in different functions, by passing variables
+  };
+
+  var swipeEndHandler = function() {
+// removing swipeMove and swipeEnd handlers, which were attached on swipeStart
+$(document).off(&quot;mousemove&quot;, mousemoveHandler);
+$(document).off(&quot;mouseup&quot;, swipeEndHandler);
+
+if (!deltaY) return; // if there was no movement on Y axis, then we don&apos;t need to do anything else
+
+// if &quot;swipe distance&quot; is bigger than half of the screen height in specific direction, then we call the function to change panels
+if (deltaY / winH &gt;= 0.5) navigateUp();
+if (deltaY / winH &lt;= -0.5) navigateDown();
+
+// even if the panel doesn&apos;t change, we still need to move all parts to their default position for the current panel
+changePages(); 
+  };
+
+  // Update the current page
+  function navigateUp() {
+if (curPage &gt; 1) curPage--;
+  };
+
+  function navigateDown() {
+if (curPage &lt; numOfPages) curPage++;
+  };
+</code></pre><h1 id="添加波形滚动"><a href="#添加波形滚动" class="headerlink" title="添加波形滚动"></a>添加波形滚动</h1><p>到添加波形滚动的时候了！</p>
+<p>每个切片是根据“活动”切片（鼠标的位置），基于它的“deltaY”和“index”变量定位。切片在 Y 轴的上根据它和活动切片有多远的距离进行延迟滚动。这种延迟不是静态的数，根据它和活动切片有多远的距离慢慢减小，甚至减小到 0（变得一样平）。</p>
+<pre><code>  var staggerVal = 65; // height difference between closest slide to the active one
+  var staggerStep = 4; // each slice away from the active slice moves slightly less
+  var changeAT = 0.5; // animation time in seconds
+
+  function moveParts(y, index) {
+
+var leftMax = index - 1; // max index of slices left of active
+var rightMin = index + 1; // min index of slices right of active
+
+var stagLeft = 0;
+var stagRight = 0;
+var stagStepL = 0;
+var stagStepR = 0;
+var sign = (y &gt; 0) ? -1 : 1; // direction of swipe
+
+movePart(&quot;.ws-bg__part-&quot; + index, y); // move active slice
+
+for (var i = leftMax; i &gt; 0; i--) { // starting loop from right to left with slices, which are on the left side from the active slice
+
+  var step = index - i;
+  var sVal = staggerVal - stagStepL;
+
+  // the first 15 steps we are using the default stagger, then reducing it to 1
+  stagStepL += (step &lt;= 15) ? staggerStep : 1;
+
+  // no negative movement
+  if (sVal &lt; 0) sVal = 0;
+
+  stagLeft += sVal;
+  var nextY = y + stagLeft * sign; // Y value for current step
+
+  // if the difference in distance of the current step is more than the deltaY of the active one, then we fix the current step on the default position
+  if (Math.abs(y) &lt; Math.abs(stagLeft)) nextY = 0;
+  movePart(&quot;.ws-bg__part-&quot; + i, nextY);
+}
+
+// same as above, for the right side
+for (var j = rightMin; j &lt;= bgParts; j++) {
+  var step = j - index;
+  var sVal = staggerVal - stagStepR;
+  stagStepR += (step &lt;= 15) ? staggerStep : 1;
+  if (sVal &lt; 0) sVal = 0;
+  stagRight += sVal;
+  var nextY = y + stagRight * sign;
+  if (Math.abs(y) &lt; Math.abs(stagRight)) nextY = 0;
+  movePart(&quot;.ws-bg__part-&quot; + j, nextY);
+}
+
+  };
+
+  function movePart($part, y) {
+var y = y - (curPage - 1) * winH;
+
+// GSAP for animation
+TweenLite.to($part, changeAT, {y: y, ease: Back.easeOut.config(4)});
+  };
+</code></pre><p>我用了 GSAP（<a href="https://greensock.com/" target="_blank" rel="external">GreenSock</a>）做的动画。虽然通常情况下我不用动画库，但在这种情况下，我们需要实时动画（例如：暂停和重启每个鼠标滚动事件），没有 GSAP 做不到这么平滑。</p>
+<p>下面是让页面变动的函数：</p>
+<pre><code>  var waveStagger = 0.013; // we don&apos;t want to move all slices at the same time, so we add a 13ms stagger
+  // we will remove the cumulative delay from animation time, because we don&apos;t want user to wait extra time just for this interaction
+
+  function changePages() {
+var y = (curPage - 1) * winH * -1; // position, based on current page variable
+var leftMax = index - 1;
+var rightMin = index + 1;
+
+TweenLite.to(&quot;.ws-bg__part-&quot; + index, changeAT, {y: y});
+
+for (var i = leftMax; i &gt; 0; i--) {
+  var d = (index - i) * waveStagger;
+  TweenLite.to(&quot;.ws-bg__part-&quot; + i, changeAT - d, {y: y, delay: d});
+}
+
+for (var j = rightMin; j &lt;= bgParts; j++) {
+  var d = (j - index) * waveStagger;
+  TweenLite.to(&quot;.ws-bg__part-&quot; + j, changeAT - d, {y: y, delay: d});
+}
+  };    
+
+  // call the function on resize to reset pixel values. you may want to debounce this now
+  $(window).on(&quot;resize&quot;, function() {
+winW = $(window).width();
+winH = $(window).height();
+changePages();
+  });
+</code></pre><p>现在，我们可以滑动了！下面是我们目前为止的一个 demo：<br><a href="http://codepen.io/suez/pen/92b6f162b32893078b470035c8b17fde" target="_blank" rel="external">CodePen Demo</a></p>
+<h1 id="使用鼠标滚轮和方向键翻页"><a href="#使用鼠标滚轮和方向键翻页" class="headerlink" title="使用鼠标滚轮和方向键翻页"></a>使用鼠标滚轮和方向键翻页</h1><p><a href="https://twitter.com/elifitch" target="_blank" rel="external">@EliFitch</a> 帮这个取了个名字“波形滚动”（WaveScroll）。加上下面这些 UX 改进，使其感觉更像波浪状。</p>
+<pre><code>  // used to block scrolling so one wheel spin doesn&apos;t go through all the panels
+  var waveBlocked = false;
+
+  var waveStartDelay = 0.2;
+
+  // mousewheel handlers. DOMMouseScroll is required for Firefox
+  $(document).on(&quot;mousewheel DOMMouseScroll&quot;, function(e) {
+if (waveBlocked) return;
+if (e.originalEvent.wheelDelta &gt; 0 || e.originalEvent.detail &lt; 0) {
+  navigateWaveUp();
+} else { 
+  navigateWaveDown();
+}
+  });
+
+  $(document).on(&quot;keydown&quot;, function(e) {
+if (waveBlocked) return;
+if (e.which === 38) { // key up
+  navigateWaveUp();
+} else if (e.which === 40) { // key down
+  navigateWaveDown();
+}
+  });
+
+  function navigateWaveUp() {
+if (curPage === 1) return;
+curPage--;
+waveChange();
+  };
+
+  function navigateWaveDown() {
+if (curPage === numOfPages) return;
+curPage++;
+waveChange();
+  };
+
+  function waveChange() {
+waveBlocked = true; // blocking scroll waveScroll
+var y = (curPage - 1) * winH * -1;
+
+for (var i = 1; i &lt;= bgParts; i++) {
+  // starting animation for each vertical group of slices with staggered delay
+  var d = (i - 1) * waveStagger + waveStartDelay;
+  TweenLite.to(&quot;.ws-bg__part-&quot; + i, changeAT, {y: y, delay: d});
+}
+
+var delay = (changeAT + waveStagger * (bgParts - 1)) * 1000; // whole animation time in ms
+setTimeout(function() {
+  waveBlocked = false; // remove scrollBlock when animation is finished
+}, delay);
+  };
+</code></pre><p>我们把所有的部分都放在一起，放在最终的 demo 上。</p>
+<h1 id="移动端性能优化"><a href="#移动端性能优化" class="headerlink" title="移动端性能优化"></a>移动端性能优化</h1><p>我在我的手机（Nexus 5）上运行这个 demo 后，我发现了在 <code>drag</code> 事件有一些严重的性能问题。这让我想到要优化所有的滑动处理（鼠标移动/触摸移动），以及短时间内多次的滑动。</p>
+<p>用 <code>requestAnimationFrame</code> 是一个解决方案。它是一个特殊的浏览器 API，可以高性能地创建动画。你可以在<a href="https://css-tricks.com/using-requestanimationframe/" target="_blank" rel="external">这里</a>了解更多。</p>
+<pre><code>  // Polyfill for rAF
+  window.requestAnimFrame = (function() {
+return window.requestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  function(callback) {
+    window.setTimeout(callback, 1000 / 60);
+  };
+  })();
+  // Throttling function
+  function rafThrottle(fn) { // takes a function as parameter 
+var busy = false;
+return function() { // returning function (a closure)
+  if (busy) return; // busy? go away! 
+  busy = true; // hanging &quot;busy&quot; plate on the door 
+  fn.apply(this, arguments); // calling function
+  // using rAF to remove the &quot;busy&quot; plate, when browser is ready
+  requestAnimFrame(function() {
+    busy = false;
+  });
+};
+  };
+  var mousemoveHandler = rafThrottle(function(e) {
+// same code as before 
+  });
+</code></pre><h1 id="怎么解决触摸事件？"><a href="#怎么解决触摸事件？" class="headerlink" title="怎么解决触摸事件？"></a>怎么解决触摸事件？</h1><p>你可以在 demo 的代码里找到答案。其实只是附加了一个 touchmove 处理函数，而不是 mousemove。我在这篇文章不写这个了，因为即使用了 rAF 的性能优化，移动端的性能相比原来的网站（jetlag.photos）还是太逊色，就算它用了<code>&lt;canvas&gt;</code>。不过，考虑到这是 DOM 元素中的图像，其实也能接受。</p>
+<p>有些浏览器上在切片的边缘有黑线问题。出现这个问题是因为滚动时百分比的宽度和 3D 变化组合使用时，创建子像素出现了问题，透露出了黑色的背景。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>如果您有好的意见和建议请留言，我会乐于听取的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/25/译文：CSS-让对齐文本更智能/" rel="next" title="译文：CSS 让对齐文本更智能">
+                <i class="fa fa-chevron-left"></i> 译文：CSS 让对齐文本更智能
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/14/译文：当-Flexbox-遇上换行文本/" rel="prev" title="译文：当 Flexbox 遇上换行文本">
+                译文：当 Flexbox 遇上换行文本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/02/译文：波形滚动效果的制作/"
+     data-title="译文：波形滚动效果的制作"
+     data-content=""
+     data-url="http://rockzhou8.github.io/2016/05/02/译文：波形滚动效果的制作/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/02/译文：波形滚动效果的制作/"
+           data-title="译文：波形滚动效果的制作" data-url="http://rockzhou8.github.io/2016/05/02/译文：波形滚动效果的制作/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Rock Zhou" />
+          <p class="site-author-name" itemprop="name">Rock Zhou</p>
+          <p class="site-description motion-element" itemprop="description">Attitude is Everything.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rockzhou8" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/rockzhou8" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/rock.zhou" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#我从-Twitter-上获取的灵感"><span class="nav-number">1.</span> <span class="nav-text">我从 Twitter 上获取的灵感</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始写-HTML"><span class="nav-number">2.</span> <span class="nav-text">开始写 HTML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用-Sass-写基本样式表"><span class="nav-number">3.</span> <span class="nav-text">用 Sass 写基本样式表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用-JavaScript-实现背景切片"><span class="nav-number">4.</span> <span class="nav-text">用 JavaScript 实现背景切片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控制鼠标滚动"><span class="nav-number">5.</span> <span class="nav-text">控制鼠标滚动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加波形滚动"><span class="nav-number">6.</span> <span class="nav-text">添加波形滚动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用鼠标滚轮和方向键翻页"><span class="nav-number">7.</span> <span class="nav-text">使用鼠标滚轮和方向键翻页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移动端性能优化"><span class="nav-number">8.</span> <span class="nav-text">移动端性能优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎么解决触摸事件？"><span class="nav-number">9.</span> <span class="nav-text">怎么解决触摸事件？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">10.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rock Zhou</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockzhou8"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
