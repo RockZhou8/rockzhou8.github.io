@@ -1,0 +1,916 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="原文：CSS Filter Effects Blur, Grayscale, Brightness and More in CSS!
+
+图为本文中一个 CSS 滤镜效果实例
+滤镜是 SVG 规范原生的一部分。然而，当它们的用途变得更广泛时，W3C 也开始给 CSS 增加了一些常用的滤镜效果。CSS 滤镜非常强大又好用。你可以用它来模糊，变亮或饱和度调整图像。它们可以单独使用也可以和其它的滤镜组合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Filter Effects Blur Grayscale Brightness and More in CSS（译）">
+<meta property="og:url" content="http://rockzhou8.github.io/2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/index.html">
+<meta property="og:site_name" content="RockZhou's Blog">
+<meta property="og:description" content="原文：CSS Filter Effects Blur, Grayscale, Brightness and More in CSS!
+
+图为本文中一个 CSS 滤镜效果实例
+滤镜是 SVG 规范原生的一部分。然而，当它们的用途变得更广泛时，W3C 也开始给 CSS 增加了一些常用的滤镜效果。CSS 滤镜非常强大又好用。你可以用它来模糊，变亮或饱和度调整图像。它们可以单独使用也可以和其它的滤镜组合">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/292468.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/88955936.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/78247691.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/68479720.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/83040913.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/51889524.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/65420747.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/42479362.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/97777139.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/84887277.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/80226251.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/82665045.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/12395859.jpg">
+<meta property="og:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/7368604.jpg">
+<meta property="og:updated_time" content="2016-07-18T12:42:25.306Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS Filter Effects Blur Grayscale Brightness and More in CSS（译）">
+<meta name="twitter:description" content="原文：CSS Filter Effects Blur, Grayscale, Brightness and More in CSS!
+
+图为本文中一个 CSS 滤镜效果实例
+滤镜是 SVG 规范原生的一部分。然而，当它们的用途变得更广泛时，W3C 也开始给 CSS 增加了一些常用的滤镜效果。CSS 滤镜非常强大又好用。你可以用它来模糊，变亮或饱和度调整图像。它们可以单独使用也可以和其它的滤镜组合">
+<meta name="twitter:image" content="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/292468.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> CSS Filter Effects Blur Grayscale Brightness and More in CSS（译） | RockZhou's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3dae29cc8f4c5909bbf9e82dade42012";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">RockZhou's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">炫蓝的部落格</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS Filter Effects Blur Grayscale Brightness and More in CSS（译）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T16:47:45+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/个人译文/" itemprop="url" rel="index">
+                    <span itemprop="name">个人译文</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文：<br><a href="https://www.sitepoint.com/css-filter-effects-blur-grayscale-brightness-and-more-in-css/" target="_blank" rel="external">CSS Filter Effects Blur, Grayscale, Brightness and More in CSS!</a></p>
+</blockquote>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/292468.jpg" alt=""><br><em>图为本文中一个 CSS 滤镜效果实例</em></p>
+<p>滤镜是 SVG 规范原生的一部分。然而，当它们的用途变得更广泛时，W3C 也开始给 CSS 增加了一些常用的滤镜效果。CSS 滤镜非常强大又好用。你可以用它来模糊，变亮或饱和度调整图像。它们可以单独使用也可以和其它的滤镜组合使用。滤镜的 CSS 语法是这样的：</p>
+<pre><code>filter: &lt;filter-function&gt; [&lt;filter-function&gt;]* | none
+</code></pre><p>现在开始，我来对这些滤镜做一下简要的介绍。</p>
+<h1 id="亮度"><a href="#亮度" class="headerlink" title="亮度"></a>亮度</h1><p>该滤镜控制图像的亮度。它接受大于或等于零的值作为它的参数。0％ 的值将变成黑色。100％ 的值则是原始图像。你可以指定值大于 100％ 得到更明亮的图像。比如 300％ 的值将使图像变成 3 倍亮：</p>
+<pre><code>img {      filter: brightness(300%);    }
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/88955936.jpg" alt=""><br><em>原图</em></p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/78247691.jpg" alt=""></p>
+<h1 id="对比度"><a href="#对比度" class="headerlink" title="对比度"></a>对比度</h1><p>该滤镜控制图像的对比度。同上，它也接受大于或等于零的值。该滤镜控制 CSS 里图像的深色和浅色部分之间的差异。因此，0％ 的结果是一个灰色图像。设置对比度为 100％ 则是原始图像，超过之后将进一步提高图像的对比度：</p>
+<pre><code>img { filter: contrast(0%); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/68479720.jpg" alt=""><br><a id="more"></a></p>
+<h1 id="灰度"><a href="#灰度" class="headerlink" title="灰度"></a>灰度</h1><p>从名称上可以明显看出，该滤镜可以帮助你让你的图像变灰（黑白化）。该滤镜把所有图像的颜色转换为灰阶值。0％ 的值对我们的图像没有影响，100％ 的值会变成他们完全变成黑白。不允许为负值。</p>
+<pre><code>img { filter: grayscale(100%); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/83040913.jpg" alt=""></p>
+<h1 id="饱和度"><a href="#饱和度" class="headerlink" title="饱和度"></a>饱和度</h1><p>该滤镜控制图像的饱和度。0％ 的值将彻底从图像中删除掉所有颜色，而超过 100％ 的值将使图像饱和度增加。100％ 则是原始图像。不允许为负值。</p>
+<pre><code>img { filter: saturate(0%); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/51889524.jpg" alt=""></p>
+<h1 id="棕褐色化"><a href="#棕褐色化" class="headerlink" title="棕褐色化"></a>棕褐色化</h1><p>这个滤镜会把图像像一些老照片那样加上棕褐色色调。加入深褐色的量取决于百分比的值。0％ 则是原始图像，并在100％的图像将完全褐色。</p>
+<pre><code>img { filter: sepia(100%); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/65420747.jpg" alt=""></p>
+<h1 id="色调对调"><a href="#色调对调" class="headerlink" title="色调对调"></a>色调对调</h1><p>这个滤镜会把图像的所有颜色的色调对调。在该颜色调转的程度取决于指定的参数的值。在值为 0 度时，图像保持不变。虽然该滤镜没有最大值，但是，360 deg 以上的值的效果会循环。也就是说，90 deg 和 450 deg 这两个值将具有相同的效果。</p>
+<pre><code>img { filter: hue-rotate(90deg); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/42479362.jpg" alt=""></p>
+<h1 id="反色"><a href="#反色" class="headerlink" title="反色"></a>反色</h1><p>这个滤镜会把图像的所有颜色反色。反色的量取决于参数的值。0％ 值时不会对原始图像有任何影响，在值为 100％ 时将完全反色。</p>
+<pre><code>img { filter: invert(100%); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/97777139.jpg" alt=""></p>
+<h1 id="模糊"><a href="#模糊" class="headerlink" title="模糊"></a>模糊</h1><p>该滤镜适用于高斯模糊图像。它把每个像素的颜色涂抹在一起，并散布到邻近的边缘外。这个滤镜设置的半径参数会确定多少屏幕上的像素会连成一片，越大的值将越模糊一些。这个滤镜可以接受除了百分比值外的任何长度值。</p>
+<pre><code>img { filter: blur(1px); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/84887277.jpg" alt=""></p>
+<h1 id="不透明度"><a href="#不透明度" class="headerlink" title="不透明度"></a>不透明度</h1><p>该滤镜会将使你的图像半透明化。图像将在 0％ 的时候完全透明，在 100％ 则原样。该滤镜是类似于通常的 opacity 属性。这两者之间的区别是在性能上。这个滤镜属性在某些支持硬件加速的浏览器上会有更好的性能。</p>
+<pre><code>img { filter: opacity(75%); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/80226251.jpg" alt=""></p>
+<h1 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h1><p>顾名思义，这个滤镜给图像增加了阴影效果。它基本上是一种对输入图像的 alpha 遮罩的模糊，偏移量是你指定的颜色。此属性需要的 x 轴和 y 轴偏移值，以及阴影的颜色。你也可以设置一个模糊半径值，这会决定阴影是尖锐还是模糊。</p>
+<pre><code>img { filter: drop-shadow(5px 5px 10px #666); } 
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/82665045.jpg" alt=""></p>
+<h1 id="Url"><a href="#Url" class="headerlink" title="Url()"></a>Url()</h1><p>虽然上述这些滤镜是非常有用的，但它们都是通用的。你的项目上可能需要更多自定义化。如果上述的滤镜没有满足您的要求，你可以创建自己的 SVG 滤镜并通过其 id 使用 url() 来引用这个滤镜。</p>
+<pre><code>  &lt;svg style=&quot;position: absolute; top: -99999px&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
+&lt;filter id=&quot;greenish&quot;&gt;
+  &lt;feComponentTransfer&gt;
+    &lt;feFuncR type=&quot;linear&quot; slope=&quot;2&quot; intercept=&quot;-0.5&quot;/&gt;
+    &lt;feFuncG type=&quot;linear&quot; slope=&quot;2&quot; intercept=&quot;-0.&quot;/&gt;
+    &lt;feFuncB type=&quot;linear&quot; slope=&quot;2&quot; intercept=&quot;-0.25&quot;/&gt;
+  &lt;/feComponentTransfer&gt;
+&lt;/filter&gt;
+&lt;filter id=&quot;bluish&quot;&gt;
+  &lt;feComponentTransfer&gt;
+    &lt;feFuncR type=&quot;linear&quot; slope=&quot;2&quot; intercept=&quot;-0.5&quot;/&gt;
+    &lt;feFuncG type=&quot;linear&quot; slope=&quot;2&quot; intercept=&quot;-0.1&quot;/&gt;
+    &lt;feFuncB type=&quot;linear&quot; slope=&quot;2&quot; intercept=&quot;0&quot;/&gt;
+  &lt;/feComponentTransfer&gt;
+&lt;/filter&gt;
+  &lt;/svg&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+  img {
+filter: url(&apos;#greenish&apos;);
+  }
+  &lt;/style&gt;
+</code></pre><p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/12395859.jpg" alt=""></p>
+<h1 id="组合和动画滤镜"><a href="#组合和动画滤镜" class="headerlink" title="组合和动画滤镜"></a>组合和动画滤镜</h1><p>你也把可以多个滤镜组合在一起来创造各种效果。多数情况下，滤镜的顺序并没有多大关系，但是有的滤镜会根据在它们在你的 CSS 顺序会被其他一些滤镜将覆盖。例如，使用一个灰度滤镜后再使用棕褐色化滤镜最后会出现一个棕色图像，顺序反过来的话会产生的一个灰度图像。</p>
+<p>滤镜也可变成动画。通过正确的设置动画，你可以创建一些非常有趣的动画效果。以此为例：</p>
+<pre><code>  img {
+animation: haunted 3s infinite;
+  }
+
+  @keyframes haunted {
+0% {
+  filter: brightness(20%);
+}
+48% {
+  filter: brightness(20%);
+}
+50% {
+  filter: sepia(1) contrast(2) brightness(200%);
+}
+....
+96% {
+  filter: brightness(400%);
+}
+  }
+</code></pre><p>在上面的代码中，具有不同值的多个滤镜会在动画的过程中生效。</p>
+<p>CodePen 上的 Demo：<br><a href="http://codepen.io/SitePoint/pen/KrXybm" target="_blank" rel="external">http://codepen.io/SitePoint/pen/KrXybm</a></p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p>即使滤镜会在一个元素的盒模型外描绘，但对该元素的盒子模型的几何结构没有影响。要记住滤镜会影响目标元素的一切：包括背景，边框和文字修饰。你也可以在视频和内联框架中也使用滤镜。下面的演示说明了这个概念。更多的例子可在 <a href="http://bennettfeely.com/filters/" target="_blank" rel="external">Bennett Feely’s 的网站</a>。</p>
+<p><img src="http://7xs50a.com1.z0.glb.clouddn.com/16-7-17/7368604.jpg" alt=""></p>
+<p>所有这些滤镜都非常伟大且性能很好，除了模糊滤镜，如果你的浏览器不支持硬件加速的话可能会很慢。url() 滤镜的性能会根据你使用哪些 SVG 滤镜而决定。</p>
+<p><code>filter</code> 属性被所有主流浏览器支持。Chrome 和 Opera 需要这个属性的前缀版本一起使用。滤镜不支持 IE，不过 Edge 可以部分支持，也就是除了 url() 之外都支持。</p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本贴给开发者探索了许多 CSS 滤镜。它们有很好的浏览器支持性，易于使用且比 canvas 的方案有更好的性能。此外，正如我在上面提到的，你也可以在视频以及与其他元素中使用。</p>
+<p>如果你还有更绝妙的利用滤镜的方法，请给我留个言，或者提出你的疑问。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/03/Don’t-Overthink-It-Flexbox-Grids（译）/" rel="next" title="Don’t Overthink It (Flexbox) Grids（译）">
+                <i class="fa fa-chevron-left"></i> Don’t Overthink It (Flexbox) Grids（译）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/"
+     data-title="CSS Filter Effects Blur Grayscale Brightness and More in CSS（译）"
+     data-content=""
+     data-url="http://rockzhou8.github.io/2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/"
+           data-title="CSS Filter Effects Blur Grayscale Brightness and More in CSS（译）" data-url="http://rockzhou8.github.io/2016/07/17/CSS-Filter-Effects-Blur-Grayscale-Brightness-and-More-in-CSS（译）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Rock Zhou" />
+          <p class="site-author-name" itemprop="name">Rock Zhou</p>
+          <p class="site-description motion-element" itemprop="description">Attitude is Everything.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rockzhou8" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/rockzhou8" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/rock.zhou" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> facebook
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#亮度"><span class="nav-number">1.</span> <span class="nav-text">亮度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对比度"><span class="nav-number">2.</span> <span class="nav-text">对比度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#灰度"><span class="nav-number">3.</span> <span class="nav-text">灰度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#饱和度"><span class="nav-number">4.</span> <span class="nav-text">饱和度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#棕褐色化"><span class="nav-number">5.</span> <span class="nav-text">棕褐色化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#色调对调"><span class="nav-number">6.</span> <span class="nav-text">色调对调</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反色"><span class="nav-number">7.</span> <span class="nav-text">反色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模糊"><span class="nav-number">8.</span> <span class="nav-text">模糊</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不透明度"><span class="nav-number">9.</span> <span class="nav-text">不透明度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阴影"><span class="nav-number">10.</span> <span class="nav-text">阴影</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Url"><span class="nav-number">11.</span> <span class="nav-text">Url()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合和动画滤镜"><span class="nav-number">12.</span> <span class="nav-text">组合和动画滤镜</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">13.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">14.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rock Zhou</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockzhou8"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
